@@ -184,17 +184,17 @@
                     <p name="numcarte" class="card-text">${comptes.numcarte}</p>
                     
                     <h5 class="card-title">Solde</h5>
-                    <p class="card-text"style="color:grey"> ${comptes.solde}.00€</p>
+                    <p class="card-text"style="color:grey"> <b>${comptes.solde}.00€</b></p>
                     
                      <h6 class="card-title">Montant de découvert</h6>
-                    <p class="card-text"style="color:red"> ${comptes.montantDecouvert}.00€</p>
+                     <p class="card-text"style="color:red"><b> ${comptes.montantDecouvert}.00€</b></p>
                     
                     <h6 class="card-title">Montant de retrait autorisé</h6>
-                    <p class="card-text"style="color:blue">${comptes.solde + comptes.montantDecouvert}.00€</p>
+                    <p class="card-text"style="color:blue"><b>${comptes.solde + comptes.montantDecouvert}.00€</b></p>
                     
                        
                     <h6 class="card-title">Montant d'epargne</h6>
-                    <p class="card-text"style="color:purple">${comptes.montantEpargne}.00€</p>
+                    <p class="card-text"style="color:purple"><b>${comptes.montantEpargne}.00€</b></p>
                 </div>
                 <div class="col-md-12 px-2 text-center">
                     <span class="p-redirection" id="redirection">

@@ -70,8 +70,7 @@ public class Achat extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
-         HttpSession session = request.getSession(true);
+     HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
 
@@ -95,7 +94,6 @@ public class Achat extends HttpServlet {
             request.setAttribute("msg", "Connectez-vous");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-
         
         
         
@@ -113,22 +111,30 @@ public class Achat extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
-        
-              HttpSession session = request.getSession(true);
+    HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
                 Person person = user.getPerson();
+                
 
         if (user != null) {
             try {
+                Compte comptes = CompteDao.getAllCompte(person);
                 int idperson=person.getId();
+                int numcarte=Integer.parseInt(comptes.getNumcarte());
                 String nomproduit=request.getParameter("nomproduit");
-         int prixproduit=Integer.parseInt(request.getParameter("prixproduit"));
-            
-         ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
-         
-              
+                int solde = Integer.parseInt(comptes.getSolde());
+                String operation=request.getParameter("achat");
+
+                int prixproduit=Integer.parseInt(request.getParameter("prixproduit"));
+                 ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
+                 solde =solde- prixproduit;
+                 
+           
+           
+            CompteDao.paiement(solde);
+             
         request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response);
+       int x=11;     
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
@@ -139,6 +145,29 @@ public class Achat extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         
+//         
+//              
+//
+//         ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
+//         
+//         
+//         
+//         
+//          solde -= prixproduit;
+//          String operation="Achat";
+//                    CompteDao.paiement(solde, operation, idcarte);
+//              
+//        request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response);
+//            } catch (Exception e) {
+//                PrintWriter out = response.getWriter();
+//                out.println("expt :" + e.getMessage());
+//            }
+//
+//        } else {
+//            request.setAttribute("msg", "Connectez-vous");
+//            request.getRequestDispatcher("index.jsp").forward(request, response);
+//        }
+//        
         
         
         

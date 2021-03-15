@@ -124,18 +124,28 @@ public class CompteDao {
     }
     
     
-       public static void paiement(int solde, String type, int numcarte) throws SQLException {
-        String sql = "update compte set solde =? , 'Achat', where numcarte=?";
+     public static void paiement(int solde) throws SQLException {
+      String sql = "update compte set solde =? ";
         Connection connexion = AccessBd.getConnection();
-        PreparedStatement prepare = connexion.prepareStatement(sql);
-        prepare.setInt(1, solde);
-        prepare.setString(2,"Achat");
-        prepare.setInt(3, numcarte);
-        prepare.execute();
-        
-
+       PreparedStatement prepare = connexion.prepareStatement(sql);
+       prepare.setInt(1, solde);
+       
+       prepare.execute();
+      
     }
-            public static void demandeepargne(int montant, int numcarte) throws SQLException {
+     
+//    public static void paiement())throws SQLException {
+//
+//     String sql = "select sum(prixproduit)as paiement FROM banque1.achat";
+//      Connection con =AccessBd.getConnection();
+//       Statement st =con.createStatement();
+//        ResultSet rst=st.executeQuery(sql);
+//    
+//   }
+    
+    
+    
+           public static void demandeepargne(int montant, int numcarte) throws SQLException {
         String sql = "Update compte set montantEpargne=? WHERE numcarte=?";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);

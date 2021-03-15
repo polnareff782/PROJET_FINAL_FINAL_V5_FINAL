@@ -28,12 +28,17 @@
                 <div  class="text-center"> 
                        <label>Montant actuel d'epargne :
                     </label>
-                    <p class="card-text"style="color:purple"> ${comptes.montantEpargne}.00€</p>
+                    <p class="card-text"style="color:purple"> <b>${comptes.montantEpargne}.00€</b></p>
                 </div>
                      <br>    <br><br>  <br><br>    
-                <c:if test="${comptes.montantEpargne ==10 && comptes.montantEpargne <=30}">
+                <c:if test="${comptes.montantEpargne ==10 }">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                    </div>                          
+                </c:if>
+                     <c:if test="${comptes.montantEpargne ==20 }">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">15%</div>
                     </div>                          
                 </c:if>
 
@@ -43,6 +48,11 @@
                         <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                     </div>       
                 </c:if>
+                      <c:if test="${comptes.montantEpargne ==40}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
+                    </div>       
+                </c:if>
                 
                 <c:if test="${comptes.montantEpargne ==50}">
                     <div class="progress">
@@ -50,13 +60,26 @@
                     </div>
                 </c:if>
 
-                
+                <c:if test="${comptes.montantEpargne ==60}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                    </div>
+                </c:if>
                 <c:if test="${comptes.montantEpargne ==70}">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                     </div>                                      
                 </c:if>
-
+                <c:if test="${comptes.montantEpargne ==80}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                    </div>                                      
+                </c:if>
+                <c:if test="${comptes.montantEpargne ==90}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                    </div>                                      
+                </c:if>
                 <c:if test="${comptes.montantEpargne ==100}">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>

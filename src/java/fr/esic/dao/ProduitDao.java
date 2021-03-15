@@ -36,7 +36,7 @@ public class ProduitDao {
 
     public static List<Produit> AffichelisteProduit(int id) throws SQLException {
         List<Produit> produitachete = new ArrayList<>();
-        String sql = "SELECT  idperson,nom,prenom , nomproduit,prixproduit FROM achat,person where person_idperson=idperson and idperson=?";
+        String sql = "SELECT  idperson,nom,prenom , nomproduit,prixproduit,dateachat FROM achat a ,person p where person_idperson=idperson and idperson=?";
         Connection connexion = AccessBd.getConnection();
         PreparedStatement prepare = connexion.prepareStatement(sql);
         prepare.setInt(1, id);
@@ -44,8 +44,9 @@ public class ProduitDao {
         while (rs.next()) {
             Produit pa = new Produit();
             pa.setNomproduit(rs.getString("nomproduit"));
-                           pa.setPrixproduit(rs.getDouble("prixproduit"));
-
+            pa.setPrixproduit(rs.getDouble("prixproduit"));
+            pa.setDateachat(rs.getDate("dateachat"));
+            
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));

@@ -20,18 +20,28 @@
                         <div class="col-sm-3 mt-4">
                             <div class="card card-perso">
                                 <div class="card-body">
-
-                                    <strong class="text-danger">Nom produit acheté: ${h.nomproduit}
+                                    <strong class="text-danger">Faite le  : </strong>
                                     
-                                    </strong><br>
-                                    <strong class="text-black">Prix : ${h.prixproduit}</strong><br>
+                                    <p class="card-text" style="color:black"> <b>${h.dateachat}</b><br></p>
+
+                                    <strong class="text-warning">Produit :    </strong>
+                                    <p class="card-text" style="color:darkslateblue"> <b>${h.nomproduit}</b><br></p>
+
+                                    <strong class="text-success">Prix : </strong><br>
+                                      <p class="card-text" style="color:darkslategray"> <b>${h.prixproduit}.00€</b><br></p>
+
+
                                 </div>
                             </div>
                         </div>
-                    </c:forEach>  
-                    <div class="col-sm-12 px-5 mt-4">
+                    </c:forEach>    
+                    <div class="col-sm-4  mt-4">
 
-                        <img src="img/historiqueachat.jpg" alt="Votre Carte bancaire">
+
+                    </div>
+                    <div class="col-sm-5  mt-4">
+
+                        <img src="img/historiqueachat1.jpg" alt="Votre Carte bancaire">
 
                     </div>
 

@@ -91,14 +91,14 @@ public class MesCartes extends HttpServlet {
                 Compte comptes = CompteDao.getAllCompte(person);
                 int solde = Integer.parseInt(comptes.getSolde());
                 int montantDecouvert = comptes.getMontantDecouvert();
-                int montantEpargne = comptes.getMontantEpargne();
+                int montantEpargne = comptes.getMontantEpargne();//recup  de montnt de bdd
 
                 int solde_total=solde+montantDecouvert;
                 int solde_t=solde-montantEpargne;
-
-                request.setAttribute("solde_total", solde_total);
-
-                                request.setAttribute("solde_t", solde_t);
+//
+//                request.setAttribute("solde_total", solde_total);
+//
+//                request.setAttribute("solde_t", solde_t);
 
                 String etat = String.valueOf(comptes.isEtatcarte());
                 request.setAttribute("etat", etat);

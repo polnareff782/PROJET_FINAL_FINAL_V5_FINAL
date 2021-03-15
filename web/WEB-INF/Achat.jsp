@@ -161,7 +161,7 @@
         <!-- Barre de navigation -->
         <nav>
 
-            <a class="nav-link active font-weight-bold px-3 fas fa-home  material-icons "style ="color:pink; "href="MesCartes" ></a>
+            <a class="nav-link active font-weight-bold px-3 fas fa-home fa-2x material-icons "style ="color:darkred; "href="MesCartes" ></a>
 
             <div class="onglets">
                 <p class="link" >Nouveautés</p>
@@ -173,8 +173,8 @@
                     <input type="search" placeholder="Rechercher">
                 </form>
 
-                <p><a class="nav-link active font-weight-bold px-3 far fa-heart material-icons "style ="color:red; ""></a></p>
-                <p><a class="nav-link active font-weight-bold px-3 fas fa-shopping-cart  material-icons "style ="color:purple; "href="HistoriqueAchatServlet" ></a> </p>
+                <p><a class="nav-link active font-weight-bold px-3 fas fa-heart fa-2x material-icons "style ="color:red; ""></a></p>
+                <p><a class="nav-link active font-weight-bold px-3 fas fa-shopping-cart fa-2x material-icons "style ="color:purple; "href="HistoriqueAchatServlet" ></a> </p>
 
             </div>
         </nav>
@@ -219,18 +219,18 @@
                     <div class="card">
                         <img src="https://www.snipes.fr/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=1560&sh=1560&sm=fit&sfrm=png">
                         <div class="card-header">
+                            
                           <input type="text" name="nomproduit" value="Paire de chaussures stylées" hidden>
-
                             <h4 class="title">Paire de chaussures stylées</h4>
+                            
                              <input type="number" name="prixproduit" value="69" hidden>
-
                             <h4 class="price">69€</h4>
                         </div>
                         <div class="card-body">
 
                             <p>Des paires de chaussures stylées pour femme</p>
 
-                            <button type="submit">Acheter <i class="fas fa-paper-plane"></i></button>
+                            <button type="submit" value="achat">Acheter <i class="fas fa-paper-plane"></i></button>
 
                         </div>
                     </div>

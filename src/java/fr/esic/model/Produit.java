@@ -5,6 +5,8 @@
  */
 package fr.esic.model;
 
+import java.util.Date;
+
 /**
  *
  * @author marye
@@ -14,12 +16,21 @@ public class Produit {
     private int idproduit;
     private String nomproduit;
     private double prixproduit;
+    private Date dateachat;
     private Person person;
 
 
     public Produit() {
     }
 
+    public Produit(String nomproduit, double prixproduit, Date dateachat, Person person) {
+        this.nomproduit = nomproduit;
+        this.prixproduit = prixproduit;
+        this.dateachat = dateachat;
+        this.person = person;
+    }
+
+    
     public Produit(String nomproduit, double prixproduit, Person person) {
         this.nomproduit = nomproduit;
         this.prixproduit = prixproduit;
@@ -56,6 +67,14 @@ public class Produit {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Date getDateachat() {
+        return dateachat;
+    }
+
+    public void setDateachat(Date dateachat) {
+        this.dateachat = dateachat;
     }
     
   
