@@ -10,8 +10,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Achat</title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+       <title>Achat</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
@@ -164,11 +169,7 @@
             <a class="nav-link active font-weight-bold px-3 fas fa-home fa-2x material-icons "style ="color:darkred; "href="MesCartes" ></a>
 
             <div class="onglets">
-                <p class="link" >Nouveautés</p>
-                <p class="link">Homme</p>
-                <p class="link">Femme</p>
-                <p class="link">Enfant</p>
-                <p class="link">Cadeaux</p>
+               
                 <form>
                     <input type="search" placeholder="Rechercher">
                 </form>
@@ -219,11 +220,11 @@
                     <div class="card">
                         <img src="https://www.snipes.fr/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=1560&sh=1560&sm=fit&sfrm=png">
                         <div class="card-header">
-                            
-                          <input type="text" name="nomproduit" value="Paire de chaussures stylées" hidden>
+
+                            <input type="text" name="nomproduit" value="Paire de chaussures stylées" hidden>
                             <h4 class="title">Paire de chaussures stylées</h4>
-                            
-                             <input type="number" name="prixproduit" value="69" hidden>
+
+                            <input type="number" name="prixproduit" value="69" hidden>
                             <h4 class="price">69€</h4>
                         </div>
                         <div class="card-body">
@@ -240,10 +241,10 @@
                     <div class="card">
                         <img src="https://static.nike.com/a/images/f_auto/q_auto:eco/t_PDP_864_v1/abb537eb-0e70-4e1f-903e-ec46b8657c0d/short-de-training-en-tissu-fleece-dri-fit-pour-n97b2F.jpg">
                         <div class="card-header">
-                         <input type="text" name="nomproduit" value="Short pour courir" hidden>
+                            <input type="text" name="nomproduit" value="Short pour courir" hidden>
 
                             <h4 class="title" >Short pour courir</h4>
-                              <input type="number" name="prixproduit" value="39" hidden>
+                            <input type="number" name="prixproduit" value="39" hidden>
 
                             <h4 class="price" >39€</h4>
                         </div>
@@ -258,7 +259,9 @@
                 </form>
             </div>
             <!-- Fin de toutes les cartes -->
-
+      <br>    <br>
+            <p class="text-danger text-center"> <b>${msg}</b> </p>
+   <br>
             <!-- Video de presentation -->
             <div class="video">
                 <iframe src="https://www.youtube.com/embed/2COSkxxOtXY" allowfullscreen></iframe>

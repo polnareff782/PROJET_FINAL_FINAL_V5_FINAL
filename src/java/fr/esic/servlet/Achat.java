@@ -123,18 +123,25 @@ public class Achat extends HttpServlet {
                 int numcarte=Integer.parseInt(comptes.getNumcarte());
                 String nomproduit=request.getParameter("nomproduit");
                 int solde = Integer.parseInt(comptes.getSolde());
-                String operation=request.getParameter("achat");
+               String operation=request.getParameter("Achat");
 
                 int prixproduit=Integer.parseInt(request.getParameter("prixproduit"));
                  ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
-                 solde =solde- prixproduit;
                  
-           
-           
-            CompteDao.paiement(solde);
+                 if(solde> prixproduit){
+                     solde =solde- prixproduit;
+          
+                     CompteDao.paiement(solde);   
+                                    }            
+
+                  else {
+                request.setAttribute("msg", "Veuillez verifiez votre solde!!");
+             request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response); }
+                 
+//            HistoriqueDao.AjouterAchat(operation, prixproduit, idperson);
              
-        request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response);
-       int x=11;     
+      
+   
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
@@ -145,35 +152,7 @@ public class Achat extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         
-//         
-//              
-//
-//         ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
-//         
-//         
-//         
-//         
-//          solde -= prixproduit;
-//          String operation="Achat";
-//                    CompteDao.paiement(solde, operation, idcarte);
-//              
-//        request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response);
-//            } catch (Exception e) {
-//                PrintWriter out = response.getWriter();
-//                out.println("expt :" + e.getMessage());
-//            }
-//
-//        } else {
-//            request.setAttribute("msg", "Connectez-vous");
-//            request.getRequestDispatcher("index.jsp").forward(request, response);
-//        }
-//        
-        
-        
-        
-        
-        
-        
+     
         
     }
 
