@@ -19,36 +19,60 @@
         <title>Epargne</title>
     </head>
     <body>
-    <br>  <br> <br>   
-    <div class="row">
+        <br>    <br>
+        <div class="container">
+        <div class="row ">
+            <div class="col-md-4">
+               <br> 
+                
+                <div  class="text-center"> 
+                       <label>Montant actuel d'epargne :
+                    </label>
+                    <p class="card-text"style="color:purple"> ${comptes.montantEpargne}.00€</p>
+                </div>
+                     <br>    <br><br>  <br><br>    
+                <c:if test="${comptes.montantEpargne ==10 && comptes.montantEpargne <=30}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                    </div>                          
+                </c:if>
 
-            <div class="col-md-5">
-                <img src="img/epargne.jpg"   alt="Votre Carte bancaire">
-            </div>
-    <br>  <br> <br> 
-            <div class="col-md-5">  <br>  <br> <br> 
-                <form action="EpargneServlet" method="post">
-                    <div>
-                    
-                        <!--     <textarea  name="epargne"rows="3" cols="80">
-    Le montant choisis pour l'epargne sera viré vers le livret A et sera bloqué.
-   Vous n'aurez accés a ce montant qu' aprés 6 mois.
-                        </textarea> -->
+
+                <c:if test="${comptes.montantEpargne ==30}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                    </div>       
+                </c:if>
+                
+                <c:if test="${comptes.montantEpargne ==50}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
                     </div>
-    <br>  
-    <div>
-       
-        <br><br>
-        <input type="number" name="epargne"  placeholder="Montant à epargner ">
-        <button type="submit" class="btn  btn-info">Epargnez! </button>
-        
-        
-        <p class="text-center text-danger" id="msg"> ${msg} </p>
-    </div>
-                    
+                </c:if>
 
-                </form>
-            </div>
+                
+                <c:if test="${comptes.montantEpargne ==70}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>                                      
+                </c:if>
+
+                <c:if test="${comptes.montantEpargne ==100}">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                    </div>             
+                </div>                                      
+                </c:if>
+
         </div>
-    </body>
+
+        <div class="col-md-2"> <br>
+
+        </div>
+        <div class="col-md-4">
+            <img src="img/epargne.jpg"   alt="Votre Carte bancaire">
+        </div>
+</div>
+</div>
+</body>
 </html>
