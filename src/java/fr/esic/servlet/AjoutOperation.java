@@ -96,6 +96,8 @@ public class AjoutOperation extends HttpServlet {
 
         int montant = Integer.parseInt(request.getParameter("montant"));
         String operation = request.getParameter("operation");
+                int montantEpargne = Integer.parseInt(request.getParameter("montant"));
+
         if (user != null) {
 
             try {
@@ -111,8 +113,14 @@ public class AjoutOperation extends HttpServlet {
                     CompteDao.Solde(solde, operation, idcarte);
                     HistoriqueDao.AjouterOperation(operation, montant, idperson);
 
-                } else {
+                 } else if (operation.equals("retrait")) {
                     solde -= montant;
+                    CompteDao.Solde(solde, operation, idcarte);
+                    HistoriqueDao.AjouterOperation(operation, montant, idperson);
+                }
+                else{
+                    solde -= montantEpargne;
+                   CompteDao.demandeepargne(montantEpargne, idcarte);
                     CompteDao.Solde(solde, operation, idcarte);
                     HistoriqueDao.AjouterOperation(operation, montant, idperson);
                 }

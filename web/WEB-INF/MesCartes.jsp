@@ -71,6 +71,10 @@
                                         <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait">
                                         <label class="form-check-label" for="inlineRadio2">Retrait</label>
                                     </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne">
+                                        <label class="form-check-label" for="inlineRadio2">epargne</label>
+                                    </div>
                                 </div>
                                 <div class="row g-3 align-items-center mt-4">
                                     <div class="col-auto">
@@ -187,6 +191,10 @@
                     
                     <h6 class="card-title">Montant de retrait autorisé</h6>
                     <p class="card-text"style="color:blue">${comptes.solde + comptes.montantDecouvert}.00€</p>
+                    
+                       
+                    <h6 class="card-title">Montant d'epargne</h6>
+                    <p class="card-text"style="color:purple">${comptes.montantEpargne}.00€</p>
                 </div>
                 <div class="col-md-12 px-2 text-center">
                     <span class="p-redirection" id="redirection">

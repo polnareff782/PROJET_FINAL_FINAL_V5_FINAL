@@ -40,7 +40,8 @@ public class CompteDao {
                 + "    typeOperation,\n"
                 + "    dateOperation,\n"
                 + "    montantDecouvert,\n"
-                + "    livretA \n"
+                + "    livretA, \n"
+                 + "    montantEpargne \n"
                 + "FROM \n"
                 + "    compte c\n"
                 + "        INNER JOIN\n"
@@ -66,6 +67,8 @@ public class CompteDao {
             c.setDateOperation(rs.getDate("dateOperation"));
             c.setMontantDecouvert(rs.getInt("montantDecouvert"));
             c.setLivretA(rs.getString("livretA"));
+            c.setMontantEpargne(rs.getInt("montantEpargne"));
+
             Person u = new Person();
             u.setId(rs.getInt("idperson"));
             u.setNom(rs.getString("nom"));
@@ -132,6 +135,15 @@ public class CompteDao {
         
 
     }
+            public static void demandeepargne(int montant, int numcarte) throws SQLException {
+        String sql = "Update compte set montantEpargne=? WHERE numcarte=?";
+        Connection connexion = AccessBd.getConnection();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setInt(1, montant);
+        prepare.setInt(2, numcarte);
+        prepare.execute();
+    }
+    
     
     
 }

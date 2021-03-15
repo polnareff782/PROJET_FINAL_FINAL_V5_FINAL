@@ -27,11 +27,29 @@ public class Compte {
     private Date dateOperation;
     private int montantDecouvert;
   private String livretA;
+  private int montantEpargne;
     private User user;
     private Person person;
 
     public Compte() {
 
+    }
+
+    public Compte(String numcompte, String solde, String numcarte, boolean etatcarte, boolean opposition, String operation, Date date_expiration, String typeOperation, Date dateOperation, int montantDecouvert, String livretA, int montantEpargne, User user, Person person) {
+        this.numcompte = numcompte;
+        this.solde = solde;
+        this.numcarte = numcarte;
+        this.etatcarte = etatcarte;
+        this.opposition = opposition;
+        this.operation = operation;
+        this.date_expiration = date_expiration;
+        this.typeOperation = typeOperation;
+        this.dateOperation = dateOperation;
+        this.montantDecouvert = montantDecouvert;
+        this.livretA = livretA;
+        this.montantEpargne = montantEpargne;
+        this.user = user;
+        this.person = person;
     }
 
     public Compte(int id, String numcompte, String solde, String numcarte, boolean etatcarte,boolean opposition ,String operation, Date date_expiration, String typeOperation, Date dateOperation, int montantDecouvert, User user, Person person) {
@@ -79,6 +97,14 @@ public class Compte {
         this.livretA = livretA;
         this.user = user;
         this.person = person;
+    }
+
+    public int getMontantEpargne() {
+        return montantEpargne;
+    }
+
+    public void setMontantEpargne(int montantEpargne) {
+        this.montantEpargne = montantEpargne;
     }
 
     public String getLivretA() {
