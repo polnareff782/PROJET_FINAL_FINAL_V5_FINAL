@@ -31,10 +31,11 @@
     <body> 
         <form action="AjoutOperation?numcarte=${comptes.numcarte} " method="Post">
             <div class="row">
+                <p class="text-danger text-center"> <b>${msg}</b> </p>
                 <div class="col-md-9 mt-2"></div>
 
                 <div class="col-md-2 mb-2">
-                    
+
                     <c:if test="${comptes.etatcarte == true}">
                         <c:if test="${comptes.opposition == false}">
                             <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  id="operation">Operations</button>
@@ -68,20 +69,36 @@
                                         <label class="form-check-label" for="inlineRadio1">Depot</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait">
-                                        <label class="form-check-label" for="inlineRadio2">Retrait</label>
+                                        <c:if test="${comptes.solde == 0}">
+
+                                            <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait" disabled>
+                                            <label class="form-check-label" for="inlineRadio2">Retrait</label>
+                                        </c:if>
+                                            <c:if test="${comptes.solde > 0}">
+
+                                            <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait" >
+                                            <label class="form-check-label" for="inlineRadio2">Retrait</label>
+                                        </c:if>
+
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne">
+                                        <c:if test="${comptes.solde == 0}">
+                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" disabled>
                                         <label class="form-check-label" for="inlineRadio2">epargne</label>
+                                   </c:if> 
+                                        <c:if test="${comptes.solde > 0}">
+                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" >
+                                        <label class="form-check-label" for="inlineRadio2">epargne</label>
+                                   </c:if> 
+                                        
                                     </div>
                                 </div>
                                 <div class="row g-3 align-items-center mt-4">
                                     <div class="col-auto">
                                         <select hidden id="idperson" name="idperson">
-                                        <option value="${comptes.person.id}">${comptes.person.id}</option>
+                                            <option value="${comptes.person.id}">${comptes.person.id}</option>
                                         </select>
-    
+
                                         <label for="inputmontant" class="col-form-label">Montant :</label>
                                     </div>
                                     <div class="col-auto">
@@ -133,7 +150,7 @@
         <form action="DemandeDecouvertServlet?numcarte=${comptes.numcarte}" method="Post">
             <div class="row">
                 <div class="col-md-9">
-                    
+
                 </div>
                 <div class="col-md-3 mt-2">
 
@@ -157,7 +174,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                   
+
                                     <div class="mb-3">
                                         <label for="montant de decouvert" class="form-label">Montant de découvert</label>
                                         <input type="number" class="form-control"  name="montant">
@@ -182,17 +199,17 @@
                 <div class="card-body">
                     <h5 class="card-title">Carte Bancaire</h5>
                     <p name="numcarte" class="card-text">${comptes.numcarte}</p>
-                    
+
                     <h5 class="card-title">Solde</h5>
                     <p class="card-text"style="color:grey"> <b>${comptes.solde}.00€</b></p>
-                    
-                     <h6 class="card-title">Montant de découvert</h6>
-                     <p class="card-text"style="color:red"><b> ${comptes.montantDecouvert}.00€</b></p>
-                    
+
+                    <h6 class="card-title">Montant de découvert</h6>
+                    <p class="card-text"style="color:red"><b> ${comptes.montantDecouvert}.00€</b></p>
+
                     <h6 class="card-title">Montant de retrait autorisé</h6>
                     <p class="card-text"style="color:blue"><b>${comptes.solde + comptes.montantDecouvert}.00€</b></p>
-                    
-                       
+
+
                     <h6 class="card-title">Montant d'epargne</h6>
                     <p class="card-text"style="color:purple"><b>${comptes.montantEpargne}.00€</b></p>
                 </div>
@@ -208,7 +225,7 @@
                         </c:if>
                         <c:if test="${comptes.opposition == true}">
                             <p>Votre carte est suspendu!<br><span class="text-danger bold">VOUS DEVEZ CONTACTER VOTRE CONSEILLER POUR L'ACTIVER.</span> </p>
-                        </c:if>
+                            </c:if>
                     </span>
                 </div>
             </div>  

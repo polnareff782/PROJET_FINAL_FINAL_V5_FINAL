@@ -93,12 +93,8 @@ public class MesCartes extends HttpServlet {
                 int montantDecouvert = comptes.getMontantDecouvert();
                 int montantEpargne = comptes.getMontantEpargne();//recup  de montnt de bdd
 
-                int solde_total=solde+montantDecouvert;
-                int solde_t=solde-montantEpargne;
-//
-//                request.setAttribute("solde_total", solde_total);
-//
-//                request.setAttribute("solde_t", solde_t);
+//                int solde_total=solde+montantDecouvert;
+//                int solde_t=solde-montantEpargne;
 
                 String etat = String.valueOf(comptes.isEtatcarte());
                 request.setAttribute("etat", etat);
@@ -108,7 +104,6 @@ public class MesCartes extends HttpServlet {
                 if (opposition.equals("true")) {
                     CompteDao.OppositionCarte(idcarte);
                 } 
-                
                 
                 else if (etat.equals("false")) {
                     CompteDao.ActiveCarte(idcarte);

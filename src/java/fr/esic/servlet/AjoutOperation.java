@@ -113,18 +113,27 @@ public class AjoutOperation extends HttpServlet {
                     HistoriqueDao.AjouterOperation(operation, montant, idperson);
 
                 } else if (operation.equals("retrait")) {
-                    solde -= montant;
+                    
+                
+                        solde -= montant;
                     CompteDao.Solde(solde, operation, idcarte);
-                    HistoriqueDao.AjouterOperation(operation, montant, idperson);
-                } else  {
-                    solde -= montantEpargne;
+                    HistoriqueDao.AjouterOperation(operation, montant, idperson);}
+                   
+                   
+                else  {
+                    
+                      
+                 solde -= montantEpargne;
                     montantEpargne += montant;
                     CompteDao.demandeepargne(montantEpargne, idcarte);
                     CompteDao.Solde(solde, operation, idcarte);
-                    HistoriqueDao.AjouterOperation(operation, montant, idperson);
-                } 
+                    HistoriqueDao.AjouterOperation(operation, montant, idperson);}
+                  
+                    
+               
+//                        request.getRequestDispatcher("WEB-INF/MesCartes.jsp").forward(request, response); 
 
-                response.sendRedirect("MesCartes");
+             response.sendRedirect("MesCartes");
 
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
