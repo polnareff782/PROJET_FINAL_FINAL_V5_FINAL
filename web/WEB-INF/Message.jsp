@@ -25,6 +25,8 @@
         <div class="container ">
             <div class="row"> 
                 <div class="col-md-4 mb-2">
+                                <p class="text-danger text-center"> ${msg} </p>
+
                     <form action="MessageServlet?id=${comptes.person.id}" method="post">
 
                         <div id="accordion" >
@@ -104,7 +106,8 @@
                             <c:forEach items="${messages}" var="m">
 
                                 <div class="card-body">
-                                    ${m.contenuMessage} ${m.dateMessage}
+                                       <h6>${m.dateMessage} :</h6> 
+                                    ${m.contenuMessage} 
                                 </div>
                             </c:forEach>
                         </div>

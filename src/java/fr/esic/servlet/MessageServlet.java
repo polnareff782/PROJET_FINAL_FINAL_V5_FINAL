@@ -78,12 +78,22 @@ public class MessageServlet extends HttpServlet {
                 request.setAttribute("comptes", comptes);
                 
                 List<Message> messages = MessageDao.AfficheContenu(idperson);
+                
                 request.setAttribute("messages", messages);
-
+     
+                
                 List<Message> message=MessageDao.getMessageConseiller();
                 request.setAttribute("message", message);
   
-             
+                if(message.isEmpty())
+    
+                {            
+                    request.setAttribute("msg", "Pas de nouveau messages");
+
+                }else {
+                 request.setAttribute("msg", "Vous avez un message non lu! ");
+
+                }
                 
                 request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
             } catch (Exception e) {

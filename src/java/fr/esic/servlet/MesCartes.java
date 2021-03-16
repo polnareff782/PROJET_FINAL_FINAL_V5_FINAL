@@ -20,8 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author marye  HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
+ * @author marye  
  */
 @WebServlet(name = "MesCartes", urlPatterns = {"/MesCartes"})
 public class MesCartes extends HttpServlet {
@@ -90,10 +89,11 @@ public class MesCartes extends HttpServlet {
                int idcarte = Integer.parseInt(request.getParameter("numcarte"));
                 Compte comptes = CompteDao.getAllCompte(person);
                 int solde = Integer.parseInt(comptes.getSolde());
-                int montantDecouvert = comptes.getMontantDecouvert();
+               int montantDecouvert = comptes.getMontantDecouvert();
+int montantDecouver=Integer.parseInt(request.getParameter("montant"));
                 int montantEpargne = comptes.getMontantEpargne();//recup  de montnt de bdd
 
-//                int solde_total=solde+montantDecouvert;
+                int solde_total=solde+montantDecouver;
 //                int solde_t=solde-montantEpargne;
 
                 String etat = String.valueOf(comptes.isEtatcarte());
