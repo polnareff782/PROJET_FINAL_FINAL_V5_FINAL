@@ -7,6 +7,7 @@ package fr.esic.servlet;
 
 import fr.esic.dao.CompteDao;
 import fr.esic.dao.MessageDao;
+import fr.esic.dao.PersonDao;
 import fr.esic.model.Compte;
 import fr.esic.model.Message;
 import fr.esic.model.Person;
@@ -69,8 +70,7 @@ public class MessageServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
-
-        
+       
         if (user != null) {
             try {
                 Compte comptes = CompteDao.getAllCompte(person);
@@ -82,10 +82,8 @@ public class MessageServlet extends HttpServlet {
 
                 List<Message> message=MessageDao.getMessageConseiller();
                 request.setAttribute("message", message);
-
-                
-                
-                
+  
+             
                 
                 request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
             } catch (Exception e) {
