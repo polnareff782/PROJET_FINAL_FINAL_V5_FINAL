@@ -25,7 +25,7 @@
         <div class="container ">
             <div class="row"> 
                 <div class="col-md-4 mb-2">
-                                <p class="text-danger text-center"> ${msg} </p>
+                          <!--  <p class="text-danger text-center"> ${msg} </p> -->
 
                     <form action="MessageServlet?id=${comptes.person.id}" method="post">
 
