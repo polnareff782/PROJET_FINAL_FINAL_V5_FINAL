@@ -45,7 +45,7 @@ public class MesCartes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+          HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
 
@@ -90,12 +90,17 @@ public class MesCartes extends HttpServlet {
                 Compte comptes = CompteDao.getAllCompte(person);
                 int solde = Integer.parseInt(comptes.getSolde());
                int montantDecouvert = comptes.getMontantDecouvert();
-int montantDecouver=Integer.parseInt(request.getParameter("montant"));
+
                 int montantEpargne = comptes.getMontantEpargne();//recup  de montnt de bdd
 
-                int solde_total=solde+montantDecouver;
-//                int solde_t=solde-montantEpargne;
+ 
+                int solde_total=solde+montantDecouvert;
+                int solde_t=solde-montantEpargne;
 
+                 request.setAttribute("solde_total", solde_total);
+
+                                request.setAttribute("solde_t", solde_t);
+                
                 String etat = String.valueOf(comptes.isEtatcarte());
                 request.setAttribute("etat", etat);
                 String opposition = String.valueOf(comptes.isOpposition());
@@ -107,6 +112,8 @@ int montantDecouver=Integer.parseInt(request.getParameter("montant"));
                 
                 else if (etat.equals("false")) {
                     CompteDao.ActiveCarte(idcarte);
+                             
+
                 } else {
                     CompteDao.DesactiverCarte(idcarte);
                 }
@@ -117,6 +124,8 @@ int montantDecouver=Integer.parseInt(request.getParameter("montant"));
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
+                    
+
         }
 
     }

@@ -42,14 +42,14 @@
 
                         </c:if>
                         <c:if test="${comptes.opposition == true}">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
                                 Operations
                             </button>
                         </c:if>
                     </c:if>
 
                     <c:if test="${comptes.etatcarte == false}">
-                        <button type="button" class="btn btn-outline-info"" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
+                        <button type="button" class="btn btn-secondary"" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
                             Operations
                         </button>
                     </c:if>
@@ -172,13 +172,13 @@
                             <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#decouvertmodel" >Demande Decouvert</button>
                         </c:if>
                         <c:if test="${comptes.opposition == true}">
-                            <button type="button" class="btn btn-outline-warning" disabled >Demande Decouvert</button>
+                            <button type="button" class="btn btn-secondary" disabled >Demande Decouvert</button>
                         </c:if>
 
                     </c:if>
 
                             <c:if test="${comptes.etatcarte == false}">
-                        <button type="button" class="btn btn-outline-warning"" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  disabled>
+                        <button type="button" class="btn btn-secondary"" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  disabled>
                            Demande Decouvert
                         </button>
                     </c:if>
