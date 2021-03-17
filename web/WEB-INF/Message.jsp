@@ -61,60 +61,57 @@
 
                     <form action="mailto:Conseiller@conseiller.fr" method="post" enctype="text/plain">
 
-                                 <div class="card-body">
-                                    
-                                     <button type="submit" class="btn btn-info "> <b>Envoyer un Mail </b></button>
-                                    </div>
+                        <div class="card-body">
+
+                            <button type="submit" class="btn btn-info "> <b>Envoyer un Mail </b></button>
+                        </div>
                     </form>
                 </div>
             </div>
 
 
-            <div class="row"> 
-                <div id="accordion" class="col-md-4 mb-2">
-                    <div class="card ">
-                        <div class="card-header bg-white lg-white ">
-                            <a class="collapsed card-link text-warning " data-toggle="collapse" href="#collapseTwo">
-                                <b>Messages reçues</b>  
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                            <c:forEach items="${message}" var="m">
+         
+
+            <div class="card mb-2" style="width: 22rem;">
+                <div class="card-header  bg-white lg-white text-success">
+              <b>Messages envoyés</b> 
+                </div>
+                <ul class="list-group list-group-flush">
+                    <input  hidden type="test" name="idperson" value="${comptes.person.id}">
+
+                    <li class="list-group-item">  
+                        <c:forEach items="${messages}" var="m">
+
+
+                            <h6>${m.dateMessage} :</h6> 
+                            ${m.contenuMessage} 
+
+                        </c:forEach></li>
+
+                </ul>
+            </div>
+
+ 
+                    <div class="card" style="width: 22rem;">
+                <div class="card-header  bg-white lg-white text-warning mt-2">
+              <b>Messages reçus</b> 
+                </div>
+                <ul class="list-group list-group-flush">
+                    <input  hidden type="test" name="idperson" value="${comptes.person.id}">
+
+                    <li class="list-group-item">  
+                    <c:forEach items="${message}" var="m">
 
                                 <div class="card-body">
-                                    
-                                   <h6>${m.dateMessage} :</h6> 
+
+                                    <h6>${m.dateMessage} :</h6> 
                                     ${m.contenuMessage}    
                                 </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
+                            </c:forEach></li>
+
+                </ul>
             </div>
-
-
-            <div class="row"> 
-                <div id="accordion" class="col-md-4 mb-2">
-                    <div class="card">
-                        <div class="card-header  bg-white lg-white">
-                            <input  hidden type="test" name="idperson" value="${comptes.person.id}">
-                            <a class="collapsed card-link text-success" data-toggle="collapse" href="#collapseThree">
-                                <b>Messages envoyés</b> 
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="collapse" data-parent="#accordion">
-                            <c:forEach items="${messages}" var="m">
-
-                                <div class="card-body">
-                                       <h6>${m.dateMessage} :</h6> 
-                                    ${m.contenuMessage} 
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+           
 
 
             <div class="row">
