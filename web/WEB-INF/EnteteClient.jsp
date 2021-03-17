@@ -64,7 +64,7 @@
                             </li>
                            
                             <li class="nav-item">
-                                <a class="nav-link active font-weight-bold px-3 fas fa-user-edit fa-2x material-icons " style ="color:green;"href=ModifProfilClient></a>
+                                <a class="nav-link active font-weight-bold px-3 fas fa-user-edit fa-2x material-icons " style ="color:green;"href=modifProfilClient></a>
                             </li>
                              <li class="nav-item">
                                 <a class="nav-link active font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:red; " href="DeconnexionServlet">  <span> <h6>

@@ -40,8 +40,7 @@
             </div>
         </nav>
 
-            <h1>Bonjour <span>${Person.nom}</span> !</h1><br>
-            <h5>Listes des clients</h5>
+      
             <table class="table">
                 <thead>
                     <tr class="table-active">

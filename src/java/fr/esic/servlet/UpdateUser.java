@@ -5,16 +5,11 @@
  */
 package fr.esic.servlet;
 
-import fr.esic.dao.CompteDao;
-import fr.esic.dao.MessageDao;
-import fr.esic.dao.PersonDao;
-import fr.esic.model.Compte;
-import fr.esic.model.Message;
-import fr.esic.model.Person;
+import fr.esic.dao.HistoriqueDao;
+import fr.esic.dao.UserDao;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author marye
  */
-@WebServlet(name = "MessageServlet", urlPatterns = {"/MessageServlet"})
-public class MessageServlet extends HttpServlet {
+@WebServlet(name = "modifProfilClient", urlPatterns = {"/modifProfilClient"})
+public class UpdateUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +41,10 @@ public class MessageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MessageServlet</title>");
+            out.println("<title>Servlet modifProfilClient</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MessageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet modifProfilClient at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,34 +63,61 @@ public class MessageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
-        Person person = user.getPerson();
+        User user =(User) session.getAttribute("user");
+        int id = Integer.parseInt(request.getParameter("id"));
        
-        if (user != null) {
-            try {
-                Compte comptes = CompteDao.getAllCompte(person);
-                 int idperson = person.getId();
-                request.setAttribute("comptes", comptes);
-                
-                List<Message> messages = MessageDao.AfficheContenu(idperson);
-                
-                request.setAttribute("messages", messages);
-     
-                
-                List<Message> message=MessageDao.getMessageConseiller();
-                request.setAttribute("message", message);
-  
-                request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("expt :" + e.getMessage());
-            }
-
-        } else {
-            request.setAttribute("msg", "Connectez-vous");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } 
         
+        
+                if (user != null) {
+                    try {
+                        if (id==3) {
+        String nom    = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mdp    = request.getParameter("mdp");
+        String log    = request.getParameter("login");
+            UserDao.UpdateUser(nom, prenom, mdp, log);
+             HistoriqueDao.UpdateUser(id);
+              User u = UserDao.AfficheUser(id);
+              request.setAttribute("u", u);
+           request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
+                            
+                        }
+              if (id==2) {
+        String nom    = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mdp    = request.getParameter("mdp");
+        String log    = request.getParameter("login");
+            UserDao.UpdateUser(nom, prenom, mdp, log);
+             HistoriqueDao.UpdateUser(id);
+              User u = UserDao.AfficheUser(id);
+              request.setAttribute("u", u);
+           request.getRequestDispatcher("WEB-INF/updateconseiller.jsp").forward(request, response);
+                            
+                        }
+                 if (id==1) {
+        String nom    = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mdp    = request.getParameter("mdp");
+        String log    = request.getParameter("login");
+            UserDao.UpdateUser(nom, prenom, mdp, log);
+             HistoriqueDao.UpdateUser(id);
+              User u = UserDao.AfficheUser(id);
+              request.setAttribute("u", u);
+           request.getRequestDispatcher("WEB-INF/updateclient.jsp").forward(request, response);
+                            
+                        }
+
+               } catch (Exception e) {
+             PrintWriter out = response.getWriter();
+             out.println("expt :"+e.getMessage());
+        }
+            
+        } else {
+            request.setAttribute("msg", "Connectez vous");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+       request.getRequestDispatcher("WEB-INF/modifProfilClient.jsp").forward(request, response);
+
     }
 
     /**
@@ -109,27 +131,7 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            try {
-
-                int idperson = Integer.parseInt(request.getParameter("id"));
-                String contenu = request.getParameter("contenu");
-
-                MessageDao.InsertMessage(contenu, idperson);
-
-                request.getRequestDispatcher("WEB-INF/Message.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("expt :" + e.getMessage());
-            }
-
-        } else {
-            request.setAttribute("msg", "Connectez-vous");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+    request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
 
     }
 

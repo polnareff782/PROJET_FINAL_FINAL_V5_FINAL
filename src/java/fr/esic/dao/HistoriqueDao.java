@@ -84,5 +84,13 @@ p.setId(rs.getInt("idperson"));
        
     }
             
-            
+                public static void UpdateUser (int id) throws SQLException{
+           String sql ="INSERT INTO banqueesic.historique (contenu, person_idperson) VALUES ('Update',?)";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setInt(1, id);
+           prepare.execute();
+        
+           
+          }    
 }

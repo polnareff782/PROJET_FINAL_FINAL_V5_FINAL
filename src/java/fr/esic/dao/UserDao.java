@@ -189,5 +189,16 @@ public class UserDao {
 
         return u;
     }
-
+        public static void UpdateUser (String nom, String prenom, String mdp, String log) throws SQLException{
+           String sql ="Update person set nom=?, prenom=?, mdp=? WHERE login=?";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setString(1, nom);
+           prepare.setString(2, prenom);
+           prepare.setString(3, mdp);
+           prepare.setString(4, log);
+           prepare.execute();
+        
+           
+          }
 }
