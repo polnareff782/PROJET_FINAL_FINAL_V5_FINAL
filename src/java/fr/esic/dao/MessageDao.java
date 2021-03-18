@@ -30,7 +30,6 @@ public class MessageDao {
 
     }
 
-    
     /*affiche tt les msg  megge envoyé  */
     public static List<Message> AfficheContenu(int id) throws SQLException {
         List<Message> message = new ArrayList<>();
@@ -42,7 +41,7 @@ public class MessageDao {
         while (rs.next()) {
             Message m = new Message();
             m.setContenuMessage(rs.getString("contenuMessage"));
-                           m.setDateMessage(rs.getDate("datemessage"));
+            m.setDateMessage(rs.getDate("datemessage"));
 
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
@@ -58,12 +57,11 @@ public class MessageDao {
 
     }
 
-    
     /* mesg recue*/
     public static List<Message> getMessageConseiller() throws SQLException {
         List<Message> message = new ArrayList<>();
 
-        String sql = "select  contenuMessage,dateMessage from message m,utilisateur u,person p,role r \n"
+        String sql = "select  contenuMessage,dateMessage,u.login from message m,utilisateur u,person p,role r \n"
                 + "where m.person_idperson=p.idperson \n"
                 + "and p.idperson=u.idperson\n"
                 + "and u.idrole=r.idrole\n"
@@ -77,12 +75,13 @@ public class MessageDao {
         while (rs.next()) {
             Message m = new Message();
             m.setContenuMessage(rs.getString("contenuMessage"));
-               m.setDateMessage(rs.getDate("datemessage"));
-               
-            User u =new User();
-            Role r=new Role();
+            m.setDateMessage(rs.getDate("datemessage"));
+
+            User u = new User();
+            u.setLogin(rs.getString("login"));
+            Role r = new Role();
             Person p = new Person();
-            
+
 //            p.setId(rs.getInt("idperson"));
 //            p.setNom(rs.getString("nom"));
 //            p.setPrenom(rs.getString("prenom"));
@@ -93,17 +92,42 @@ public class MessageDao {
         }
         return message;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public static List<Message> getMessageClient() throws SQLException {
+        List<Message> message = new ArrayList<>();
+
+        String sql = "select  contenuMessage,dateMessage , u.login  from message m,utilisateur u,person p,role r \n"
+                + "where m.person_idperson=p.idperson \n"
+                + "and p.idperson=u.idperson\n"
+                + "and u.idrole=r.idrole\n"
+                + "and r.idrole=3; ";
+        Connection connexion = AccessBd.getConnection();
+
+        Statement st = connexion.createStatement();
+
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            Message m = new Message();
+            m.setContenuMessage(rs.getString("contenuMessage"));
+            m.setDateMessage(rs.getDate("datemessage"));
+
+            User u = new User();
+                   u.setLogin(rs.getString("login"));
+            Role r = new Role();
+            Person p = new Person();
+
+//            p.setId(rs.getInt("idperson"));
+//            p.setNom(rs.getString("nom"));
+//            p.setPrenom(rs.getString("prenom"));
+            m.setPerson(p);
+
+            message.add(m);
+
+        }
+        return message;
+    }
+
     /*conseiller
     public static void AfficheMessageClient(int id) throws SQLException {
         String sql = "SELECT contenu FROM message where person_idperson=? order by date_message;";
@@ -113,8 +137,8 @@ public class MessageDao {
         prepare.execute();
 
     }
-    */
-    /* affch msg de client pr coneilller
+     */
+ /* affch msg de client pr coneilller
     public static List<Message> getMessageStaff() throws SQLException {
         List<Message> message = new ArrayList<>();
 
@@ -140,11 +164,9 @@ public class MessageDao {
         }
         return message;
     }
- */
-    /*recup tt msg conse pour client*/
-    
-
-    /*insert msg conseiler
+     */
+ /*recup tt msg conse pour client*/
+ /*insert msg conseiler
     public static void InsertMessageConseiller(String contenuMessage, int id) throws SQLException {
         String sql = "INSERT INTO Message ( contenuMessage , person_idperson) VALUES (?,?)";
         Connection connexion = AccessBd.getConnection();
@@ -154,5 +176,5 @@ public class MessageDao {
         prepare.execute();
 
     }
-*/
+     */
 }

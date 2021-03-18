@@ -126,13 +126,13 @@ public class Achat extends HttpServlet {
                String operation=request.getParameter("Achat");
 
                 int prixproduit=Integer.parseInt(request.getParameter("prixproduit"));
-                 ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);
+                
                  
                  if(solde> prixproduit){
                      solde =solde- prixproduit;
           
                      CompteDao.paiement(solde);   
-                                    }            
+                              ProduitDao.InsertProduit(nomproduit, prixproduit, idperson);       }            
 
                   else {
                 request.setAttribute("msg", "Veuillez verifiez votre solde!!");

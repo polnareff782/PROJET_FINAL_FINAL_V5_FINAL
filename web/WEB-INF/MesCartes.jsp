@@ -42,14 +42,14 @@
 
                         </c:if>
                         <c:if test="${comptes.opposition == true}">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
                                 Operations
                             </button>
                         </c:if>
                     </c:if>
 
                     <c:if test="${comptes.etatcarte == false}">
-                        <button type="button" class="btn btn-outline-info"" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
+                        <button type="button" class="btn btn-secondary"" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="operation" disabled>
                             Operations
                         </button>
                     </c:if>
@@ -60,7 +60,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
 
-                                    <h4 class="modal-title text-primary ">Choissisez une opération</h4>
+                                    <h4 class="modal-title text-primary ">Choisissez une opération</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="col-md-8 px-5">
@@ -70,11 +70,24 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <c:if test="${comptes.solde == 0}">
+             
+                                            <c:if test="${comptes.montantDecouvert == 0}">
 
                                             <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait" disabled>
                                             <label class="form-check-label" for="inlineRadio2">Retrait</label>
+                                       
+                                            </c:if> 
+                                            
+                                              <c:if test="${comptes.montantDecouvert > 0}">
+
+                                            <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait" >
+                                            <label class="form-check-label" for="inlineRadio2">Retrait</label>
+                                       
+                                            </c:if>
+                                        
                                         </c:if>
-                                            <c:if test="${comptes.solde > 0}">
+                                            
+                                        <c:if test="${comptes.solde > 0}">
 
                                             <input class="form-check-input" type="radio" name="operation" id="retrait" value="retrait" >
                                             <label class="form-check-label" for="inlineRadio2">Retrait</label>
@@ -83,14 +96,14 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <c:if test="${comptes.solde == 0}">
-                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" disabled>
-                                        <label class="form-check-label" for="inlineRadio2">epargne</label>
-                                   </c:if> 
+                                            <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" disabled>
+                                            <label class="form-check-label" for="inlineRadio2">epargne</label>
+                                        </c:if> 
                                         <c:if test="${comptes.solde > 0}">
-                                        <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" >
-                                        <label class="form-check-label" for="inlineRadio2">epargne</label>
-                                   </c:if> 
-                                        
+                                            <input class="form-check-input" type="radio" name="operation" id="epargne" value="epargne" >
+                                            <label class="form-check-label" for="inlineRadio2">epargne</label>
+                                        </c:if> 
+
                                     </div>
                                 </div>
                                 <div class="row g-3 align-items-center mt-4">
@@ -153,18 +166,22 @@
 
                 </div>
                 <div class="col-md-3 mt-2">
-
+                   
                     <c:if test="${comptes.etatcarte == true}">
                         <c:if test="${comptes.opposition == false}">
                             <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#decouvertmodel" >Demande Decouvert</button>
                         </c:if>
                         <c:if test="${comptes.opposition == true}">
-                            <button type="button" class="btn btn-outline-warning" disabled >Demande Decouvert</button>
-
+                            <button type="button" class="btn btn-secondary" disabled >Demande Decouvert</button>
                         </c:if>
 
                     </c:if>
 
+                            <c:if test="${comptes.etatcarte == false}">
+                        <button type="button" class="btn btn-secondary"" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  disabled>
+                           Demande Decouvert
+                        </button>
+                    </c:if>
                     <div class="modal fade" id="decouvertmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

@@ -20,8 +20,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author marye  HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
+ * @author marye  
  */
 @WebServlet(name = "MesCartes", urlPatterns = {"/MesCartes"})
 public class MesCartes extends HttpServlet {
@@ -46,7 +45,7 @@ public class MesCartes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+          HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
 
@@ -90,12 +89,18 @@ public class MesCartes extends HttpServlet {
                int idcarte = Integer.parseInt(request.getParameter("numcarte"));
                 Compte comptes = CompteDao.getAllCompte(person);
                 int solde = Integer.parseInt(comptes.getSolde());
-                int montantDecouvert = comptes.getMontantDecouvert();
+               int montantDecouvert = comptes.getMontantDecouvert();
+
                 int montantEpargne = comptes.getMontantEpargne();//recup  de montnt de bdd
 
-//                int solde_total=solde+montantDecouvert;
-//                int solde_t=solde-montantEpargne;
+ 
+                int solde_total=solde+montantDecouvert;
+                int solde_t=solde-montantEpargne;
 
+                 request.setAttribute("solde_total", solde_total);
+
+                                request.setAttribute("solde_t", solde_t);
+                
                 String etat = String.valueOf(comptes.isEtatcarte());
                 request.setAttribute("etat", etat);
                 String opposition = String.valueOf(comptes.isOpposition());
@@ -107,6 +112,8 @@ public class MesCartes extends HttpServlet {
                 
                 else if (etat.equals("false")) {
                     CompteDao.ActiveCarte(idcarte);
+                             
+
                 } else {
                     CompteDao.DesactiverCarte(idcarte);
                 }
@@ -117,6 +124,8 @@ public class MesCartes extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
+                    
+
         }
 
     }

@@ -6,6 +6,7 @@
 package fr.esic.servlet;
 
 import fr.esic.dao.UserDao;
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +41,7 @@ public class MajClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MajClientServlet</title>");            
+            out.println("<title>Servlet MajClientServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MajClientServlet at " + request.getContextPath() + "</h1>");
@@ -61,20 +62,19 @@ public class MajClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {
-       int a = Integer.parseInt(request.getParameter("id"));
-       User u = UserDao.AfficheUser(a);
-           request.setAttribute("u", u);
-                        
-       request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
+        if (user != null) {
+            try {
+
+                request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -92,7 +92,28 @@ public class MajClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
+        if (user != null) {
+            try {
+                String login = request.getParameter("login");
+                String mdp = request.getParameter("mdp");
+                int idperson = person.getId();
+                UserDao.UpdateClient(login, mdp, idperson);
+                request.getSession().invalidate();
+                response.sendRedirect("login");
+                // request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "tu est pas connecter");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**

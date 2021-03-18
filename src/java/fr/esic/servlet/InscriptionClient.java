@@ -1,16 +1,20 @@
 package fr.esic.servlet;
 
 import fr.esic.dao.ClientDao;
+import fr.esic.dao.CompteDao;
 import fr.esic.dao.ConseillerDao;
 import fr.esic.dao.PersonDao;
 import fr.esic.dao.UserDao;
+import fr.esic.model.Compte;
 import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashSet;
@@ -49,6 +53,33 @@ public class InscriptionClient extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //this.getServletContext().getRequestDispatcher("/Connexion.jsp").forward(request, response);
+//        OutputStream  OutputStream= response.getOutputStream();
+//       File f= new File("C:\\Users\\marye\\Desktop\\img\\smile.jpg");
+//        FileInputStream fis;
+//        byte[] b;//tab de bit
+//        
+//        try {
+//            
+//            fis=new FileInputStream(f);
+//            int n;
+//            while ((n = fis.available())>0)
+//                    {   b=new byte[n];
+//                    
+//                  int result =fis.read(b);
+//                  OutputStream.write(b, 0, b.length);
+//                  if (result == -1)
+//                      
+//                      break;
+//                    }
+//                
+//                
+//                }
+//         catch (IOException e) {
+//             e.printStackTrace();
+//             System.out.println("IOEXCEPTION");
+//        }System.out.println("Flushing");
+//        OutputStream.flush();
+
         request.getRequestDispatcher("/WEB-INF/inscriptionClient.jsp").forward(request, response);
 
     }
@@ -59,28 +90,30 @@ public class InscriptionClient extends HttpServlet {
 
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-
         String telephone = request.getParameter("telephone");
         String sexe = request.getParameter("sexe");
         String dateNaiss = request.getParameter("dateNaissance");
         String email = request.getParameter("email");
         String adresse = request.getParameter("adresse");
-
         String login = request.getParameter("login");
         String password = request.getParameter("mdp");
 
         Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
-
+       
         try {
-     
 
             PersonDao.insertPerson(p);
+      
             Person pe = PersonDao.getPersonByEmail(email);
-
+            
+            int idperson=pe.getId();
+            CompteDao.ActiveCompte(idperson);
+            Compte cp = new Compte();
+      
             User c = new User(login, password, pe);
 
             ClientDao.insertClient(c);
-
+            //ClientDao.inserimg();
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
@@ -118,19 +151,20 @@ public class InscriptionClient extends HttpServlet {
             out.println("err" + e.getMessage());
         }
         
-
+  private static String getNomFichier(Part part)
+    {
+    for(String contentDisposition :part.getHeader("content-disposition").split(";"))
+    {
+    if (contentDisposition.trim().startsWith("fichier"))
+    {
+    return contentDisposition.substring(contentDisposition.indexOf('=') + 1).trim().replace( "\"", "" );
+            }
+        }
+        return null;
+    } 
         
-    }
-    /*
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-   
-    
-     private void ecrireFichier( Part part, String nomFichier, String chemin ) throws IOException {
+        private void ecrireFichier( Part part, String nomFichier, String chemin ) throws IOException {
         BufferedInputStream entree = null;
         BufferedOutputStream sortie = null;
         try {
@@ -151,21 +185,15 @@ public class InscriptionClient extends HttpServlet {
                 entree.close();
             } catch (IOException ignore) {
             }
-        }
-    }
-    
-    
-    
-    private static String getNomFichier(Part part)
-    {
-    for(String contentDisposition :part.getHeader("content-disposition").split(";"))
-    {
-    if (contentDisposition.trim().startsWith("fichier"))
-    {
-    return contentDisposition.substring(contentDisposition.indexOf('=') + 1).trim().replace( "\"", "" );
-            }
-        }
-        return null;
-    }   
+       
+           
+            
+        }}
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }}
+
+   
      */
 }

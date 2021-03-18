@@ -47,6 +47,35 @@ public class PersonDao {
         return p;
     }
     
+    
+    
+    
+//    
+//        public static Person getconseiller(String mail) throws SQLException {
+//
+//        Person p = null;
+//        String sql = "   select nom, email from person p , utilisateur u,role r\n"
+//                + "where r.idrole=2\n"
+//                + "and u.idrole=r.idrole\n"
+//                + "and u.idperson=p.idperson\n";
+//                Connection conn = AccessBd.getConnection();
+//  
+//        PreparedStatement prepare = conn.prepareStatement(sql);
+//        prepare.setString(1, mail);
+//        ResultSet rs = prepare.executeQuery();
+//
+//        if (rs.next()) {
+//            p = new Person();
+//
+//            p.setNom(rs.getString("nom"));
+//            p.setPrenom(rs.getString("prenom"));
+//
+//            p.setEmail(rs.getString("email"));
+//
+//        }
+//        return p;
+//    }
+
     public static Person getPersonByNom(String nom) throws SQLException {
 
         Person p = null;
@@ -128,6 +157,7 @@ public class PersonDao {
         prepare.execute();
 
     }
+   
 
     /*
     public static void UpdatePerson(String nom, String prenom, String telephone, String sexe, String dateNaissance, String email, String adresse, int id) throws SQLException {
@@ -173,5 +203,7 @@ public class PersonDao {
         }
         return persons;
     }
+
+
 
 }

@@ -3,6 +3,9 @@ package fr.esic.dao;
 import fr.esic.model.Person;
 import fr.esic.model.Role;
 import fr.esic.model.User;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,29 +16,7 @@ import java.util.List;
 
 public class ClientDao {
 
-    /*  public static User getClientByLoginAndPassword(String login, String password) throws SQLException {
 
-        User u = null;
-        String sql = "select * from utilisateur where login=? and mdp=? and idrole=3";
-        Connection conn = AccessBd.getConnection();
-
-        PreparedStatement prepare = conn.prepareStatement(sql);
-        prepare.setString(1, login);
-        prepare.setString(2, password);
-        ResultSet rs = prepare.executeQuery();
-
-        if (rs.next()) {
-            u = new User();
-
-            //c.setId(rs.getInt("idutilisateur"));
-            u.setLogin(rs.getString("login"));
-            u.setMdp(rs.getString("mdp"));
-            //c.setId(rs.getInt("idperson"));
-            //c.setId(rs.getInt("idrole"));
-        }
-
-        return u;
-    }*/
     public static void insertClient(User c) throws SQLException {
         String sql = "INSERT INTO utilisateur (login, mdp, idperson, idrole) VALUES (?, ?, ?, 3)";
         Connection connexion = AccessBd.getConnection();
@@ -46,7 +27,59 @@ public class ClientDao {
 
         prepare.execute();
     }
+    
+    public static List<User> getAllClient() throws SQLException {
 
+        List<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE idrole=3";
+
+        Connection connexion = AccessBd.getConnection();
+
+        Statement requete = connexion.createStatement();
+
+        ResultSet rs = requete.executeQuery(sql);
+        while (rs.next()) {
+            User u = new User();
+            u.setId(rs.getInt("idutilisateur"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            u.setStatut(rs.getInt("statut"));
+            Person p = new Person();
+            p.setId(rs.getInt("idperson"));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setSexe(rs.getString("sexe"));
+            p.setTelephone(rs.getString("telephone"));
+            p.setEmail(rs.getString("email"));
+            p.setAddress(rs.getString("adresse"));
+            p.setDateNaissance(rs.getString("dateNaissance"));
+            u.setPerson(p);
+
+            Role r = new Role();
+            r.setId(rs.getInt("idrole"));
+            u.setRole(r);
+
+            users.add(u);
+        }
+        return users;
+    }
+    
+    
+    
+//    public static void inserimg()throws SQLException,FileNotFoundException{
+//    
+//            Connection connexion = AccessBd.getConnection();
+//        String sql = "INSERT INTO person  VALUES (?, ?)";
+//        PreparedStatement prepare = connexion.prepareStatement(sql);
+//        prepare.setString(1, "m");
+//        InputStream in =new FileInputStream("C:\\Users\\marye\\Desktop\\img\\smile.jpg");
+//        prepare.setBlob(2, in);
+//prepare.execute();
+//        System.out.println("img inserrer");
+//    
+//    
+//    }
     /*
 
     public void ModifierUser(User c) {
@@ -91,41 +124,5 @@ public class ClientDao {
     }
      */
     
-    
-    public static List<User> getAllClient() throws SQLException {
 
-        List<User> users = new ArrayList<>();
-
-        String sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson WHERE idrole=3";
-
-        Connection connexion = AccessBd.getConnection();
-
-        Statement requete = connexion.createStatement();
-
-        ResultSet rs = requete.executeQuery(sql);
-        while (rs.next()) {
-            User u = new User();
-            u.setId(rs.getInt("idutilisateur"));
-            u.setLogin(rs.getString("login"));
-            u.setMdp(rs.getString("mdp"));
-
-            Person p = new Person();
-            p.setId(rs.getInt("idperson"));
-            p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString("prenom"));
-            p.setSexe(rs.getString("sexe"));
-            p.setTelephone(rs.getString("telephone"));
-            p.setEmail(rs.getString("email"));
-            p.setAddress(rs.getString("adresse"));
-            p.setDateNaissance(rs.getString("dateNaissance"));
-            u.setPerson(p);
-
-            Role r = new Role();
-            r.setId(rs.getInt("idrole"));
-            u.setRole(r);
-
-            users.add(u);
-        }
-        return users;
-    }
 }

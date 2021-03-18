@@ -26,7 +26,7 @@
             <br>
             <form action="SendEmail" method="Post">
                 <center> 
-                <table     >
+                <table>
                     <tr>
                         <td>Name</td>
                         <td><input type="text" required="" placeholder="Name" name="name" class="form-control"></td>

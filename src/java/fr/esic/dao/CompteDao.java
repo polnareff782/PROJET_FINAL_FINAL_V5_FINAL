@@ -143,7 +143,13 @@ public class CompteDao {
 //    
 //   }
     
-    
+     public static void ActiveCompte(int idperson) throws SQLException {
+        String sql = "insert into compte set person_idperson=? ";
+        Connection connexion = AccessBd.getConnection();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setInt(1, idperson);
+        prepare.execute();
+    }
     
            public static void demandeepargne(int montant, int numcarte) throws SQLException {
         String sql = "Update compte set montantEpargne=? WHERE numcarte=?";

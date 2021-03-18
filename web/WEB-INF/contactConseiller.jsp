@@ -8,26 +8,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file="EnteteClient.jsp"%>
+        <%@ include file="menuConseiller.jsp"%>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet"type="text/css" href="style_1.css" >
-
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
-
-
     <body>
+        
         <br><br><br>
         <div class="container ">
             <div class="row"> 
                 <div class="col-md-4 mb-2">
                           <!--  <p class="text-danger text-center"> ${msg} </p> -->
 
-                    <form action="MessageServlet?id=${comptes.person.id}" method="post">
+                    <form action="contactConseiller?id=${user.person.id}" method="post">
 
                         <div id="accordion" >
                             <div class="card">
@@ -70,11 +67,11 @@
             </div>
 
 
-         
+
 
             <div class="card mb-2" style="width: 22rem;">
                 <div class="card-header  bg-white lg-white text-success">
-              <b>Messages envoyés</b> 
+                    <b>Messages envoyés</b> 
                 </div>
                 <ul class="list-group list-group-flush">
                     <input  hidden type="test" name="idperson" value="${comptes.person.id}">
@@ -91,27 +88,28 @@
                 </ul>
             </div>
 
- 
-                    <div class="card" style="width: 22rem;">
+
+            <div class="card" style="width: 22rem;">
                 <div class="card-header  bg-white lg-white text-warning mt-2">
-              <b>Messages reçus</b> 
+                    <b>Messages reçus</b> 
                 </div>
                 <ul class="list-group list-group-flush">
                     <input  hidden type="test" name="idperson" value="${comptes.person.id}">
 
                     <li class="list-group-item">  
-                    <c:forEach items="${message}" var="m">
+                        <c:forEach items="${message}" var="m">
 
-                                <div class="card-body">
+                            <div class="card-body">
 
-                                    <h6>${m.dateMessage} :</h6> 
-                                    ${m.contenuMessage}    
-                                </div>
-                            </c:forEach></li>
+                                <h6>${m.dateMessage} :</h6> 
+                                ${m.contenuMessage}  
+                                 
+                            </div>
+                        </c:forEach></li>
 
                 </ul>
             </div>
-           
+
 
 
             <div class="row">
