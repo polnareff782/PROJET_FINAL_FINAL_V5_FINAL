@@ -8,24 +8,28 @@ package fr.esic.servlet;
 import fr.esic.dao.ConseillerDao;
 import fr.esic.dao.HistoriqueConsDao;
 import fr.esic.dao.PersonDao;
-import fr.esic.dao.UserDao;
 import fr.esic.model.HistoriqueCons;
 import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Nathan Ghozlan
  */
-@WebServlet(name = "FormActiverConseiller", urlPatterns = {"/FormActiverConseiller"})
-public class FormActiverConseiller extends HttpServlet {
+@WebServlet(name = "formHistoriqueConsServlet", urlPatterns = {"/formHistoriqueCons"})
+public class formHistoriqueConsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +48,10 @@ public class FormActiverConseiller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FormActiverConseiller</title>");
+            out.println("<title>Servlet formHistoriqueConsServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FormActiverConseiller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet formHistoriqueConsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,10 +69,28 @@ public class FormActiverConseiller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                List<User> histCons = HistoriqueConsDao.getAllHistorique();
+
+                request.setAttribute("hist", histCons);
+                
+                request.getRequestDispatcher("WEB-INF/formHistoriqueConseiller.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "tu n'es pas connecter");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
-     * request Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -78,46 +100,36 @@ public class FormActiverConseiller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
 
-        String userId = request.getParameter("userId");
-        int idU = Integer.parseInt(userId);
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("mdp");
-
-        String statut = request.getParameter("statut");
-        System.out.println("stat: " + statut);
-        int stat = Integer.parseInt(statut);
-
-        Person p = new Person(nom, prenom);
         try {
+            // A mettre ds le post de formhistCons (a creer)
+            String userId = request.getParameter("userId");
+            int idU = Integer.parseInt(userId);
 
-            PersonDao.UpdatePerson(p);
+            String login = request.getParameter("login");
+            String password = request.getParameter("mdp");
 
-            //Person pe = PersonDao.getPersonByNom(nom);
+            String statut = request.getParameter("statut");
+            System.out.println("stat: " + statut);
+            int stat = Integer.parseInt(statut);
+
             Person pe = PersonDao.getPersonById(idU);
-            //System.out.println("person: " + pe);
+            System.out.println("person: " + pe);
 
             User c = new User(login, password, pe, stat);
             c.setId(idU);
-            UserDao.changerStatutConseiller(c);
-            
-            /*
-            if (c.getStatut() == 0) {//c le nouv statut
-                UserDao.DesactiverConseiller(c);
-
+            String label = null;
+            if (stat == 1) {
+                //label = c.getPerson().getPrenom() + " " + c.getPerson().getNom() + " a activé le compte N° " + userId;
+                label = "le compte n°" + userId + " a été activé";
             } else {
-                UserDao.ActiverConseiller(c);
+                //label = c.getPerson().getPrenom() + " " + c.getPerson().getNom() + " a desactivé le compte N° " + userId;
+                label = "le compte n°" + userId + " a été desactivé";
 
             }
-             */
-            request.getRequestDispatcher("AccueilServlet").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Exception :" + e.getMessage());
+            HistoriqueConsDao.getInstance().newHistorique(new HistoriqueCons(-1, label, c.getId()));
+        } catch (SQLException ex) {
+            Logger.getLogger(formHistoriqueConsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
