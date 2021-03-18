@@ -47,7 +47,7 @@
                             <a class="nav-link " style ="color:brown;" href="#">Autoriser un découvert</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:brown;" href="#">Contacter client</a>
+                            <a class="nav-link " style ="color:brown;" href="contactConseiller">Contacter client</a>
                         </li>
 
 
@@ -70,10 +70,7 @@
             <div class="col-md-3">
 
             </div>
-            <div class="col-md-5">
-
-                <img src="img/conseiller.jpg" alt="Votre Carte bancaire">
-            </div>
+           
         </div>                   
                                     
     </body>
