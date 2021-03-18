@@ -38,7 +38,7 @@
                             <a class="nav-link " style ="color:green;"href="#">Activer/Désactiver carte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:green;"href="#">modifier profil client</a>
+                            <a class="nav-link " style ="color:green;"href="ModifProfilClient">modifier profil client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style ="color:red;" href="#">Historique des comptes clients</a>
