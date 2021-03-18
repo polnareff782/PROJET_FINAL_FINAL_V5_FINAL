@@ -41,7 +41,7 @@ public class MajClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MajClientServlet</title>");            
+            out.println("<title>Servlet MajClientServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MajClientServlet at " + request.getContextPath() + "</h1>");
@@ -65,16 +65,16 @@ public class MajClientServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
-        
+
         if (user != null) {
             try {
-                
+
                 request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
-            
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -95,21 +95,21 @@ public class MajClientServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
         Person person = user.getPerson();
-        
+
         if (user != null) {
             try {
                 String login = request.getParameter("login");
                 String mdp = request.getParameter("mdp");
-               int idperson = person.getId();
+                int idperson = person.getId();
                 UserDao.UpdateClient(login, mdp, idperson);
                 request.getSession().invalidate();
-response.sendRedirect("login");
-               // request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
+                response.sendRedirect("login");
+                // request.getRequestDispatcher("WEB-INF/ProfilClient.jsp").forward(request, response);
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
-            
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

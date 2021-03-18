@@ -35,10 +35,10 @@
                             <a class="nav-link " style ="color:blue; " href="allClient">Voir compte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:green;"href="#">Activer/Désactiver compte client</a>
+                            <a class="nav-link " style ="color:green;"href="#">Activer/Désactiver carte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "style ="color:purple;" href="#">Activer/Désactiver carte client</a>
+                            <a class="nav-link " style ="color:green;"href="#">modifier profil client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style ="color:red;" href="#">Historique des comptes clients</a>
@@ -47,7 +47,7 @@
                             <a class="nav-link " style ="color:brown;" href="#">Autoriser un découvert</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:brown;" href="#">Contacter client</a>
+                            <a class="nav-link " style ="color:brown;" href="contactConseiller">Contacter client</a>
                         </li>
 
 
@@ -70,10 +70,7 @@
             <div class="col-md-3">
 
             </div>
-            <div class="col-md-5">
-
-                <img src="img/conseiller.jpg" alt="Votre Carte bancaire">
-            </div>
+           
         </div>                   
                                     
     </body>

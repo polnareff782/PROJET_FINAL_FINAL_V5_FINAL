@@ -5,9 +5,11 @@
  */
 package fr.esic.servlet;
 
-import fr.esic.dao.ClientDao;
-import fr.esic.dao.ConseillerDao;
-import fr.esic.dao.UserDao;
+import fr.esic.dao.CompteDao;
+import fr.esic.dao.MessageDao;
+import fr.esic.model.Compte;
+import fr.esic.model.Message;
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author dylan55
  */
-@WebServlet(name = "allClientServlet", urlPatterns = {"/allClient"})
-public class allClientServlet extends HttpServlet {
+@WebServlet(name = "contactConseillerServlet", urlPatterns = {"/contactConseiller"})
+public class contactConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +45,10 @@ public class allClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet allClientServlet</title>");            
+            out.println("<title>Servlet contactConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet allClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet contactConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,21 +66,34 @@ public class allClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("user");
+        Person person = user.getPerson();
+
         if (user != null) {
             try {
-                List<User> users = ClientDao.getAllClient();
-                request.setAttribute("users", users);
-                request.getRequestDispatcher("WEB-INF/voirClient.jsp").forward(request, response);
+                Compte comptes = CompteDao.getAllCompte(person);
+                int idperson = person.getId();
+                request.setAttribute("comptes", comptes);
+
+                List<Message> messages = MessageDao.AfficheContenu(idperson);
+
+                request.setAttribute("messages", messages);
+
+                List<Message> message = MessageDao.getMessageClient();
+                request.setAttribute("message", message);
+
+                request.getRequestDispatcher("WEB-INF/contactConseiller.jsp").forward(request, response);
             } catch (Exception e) {
                 PrintWriter out = response.getWriter();
                 out.println("expt :" + e.getMessage());
             }
+
         } else {
-            request.setAttribute("msg", "Connectez vous");
+            request.setAttribute("msg", "Connectez-vous");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }    }
+        }
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -91,17 +106,27 @@ HttpSession session = request.getSession(true);
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-String idperson = request.getParameter("iduser");
-        int id = Integer.parseInt(idperson);
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
 
-        try {
-            User u = UserDao.getUserById(id);
-            request.setAttribute("user", u);
-            request.getRequestDispatcher("WEB-INF/FormActivationClient.jsp").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("expt :" + e.getMessage());
-        }    }
+                int idperson = Integer.parseInt(request.getParameter("id"));
+                String contenu = request.getParameter("contenu");
+
+                MessageDao.InsertMessage(contenu, idperson);
+
+                response.sendRedirect("contactConseiller");
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "Connectez-vous");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+    }
 
     /**
      * Returns a short description of the servlet.

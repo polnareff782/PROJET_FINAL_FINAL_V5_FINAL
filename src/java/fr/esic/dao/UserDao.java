@@ -31,6 +31,11 @@ public class UserDao {
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
+            p.setTelephone(rs.getString("telephone"));
+            p.setSexe(rs.getString("sexe"));
+            p.setDateNaissance(rs.getString("dateNaissance"));
+            p.setEmail(rs.getString("email"));
+            p.setAddress(rs.getString("adresse"));
             u.setPerson(p);
 
             Role r = new Role();

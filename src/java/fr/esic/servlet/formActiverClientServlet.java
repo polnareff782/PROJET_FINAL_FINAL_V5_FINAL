@@ -5,26 +5,24 @@
  */
 package fr.esic.servlet;
 
-import fr.esic.dao.ClientDao;
-import fr.esic.dao.ConseillerDao;
+import fr.esic.dao.PersonDao;
 import fr.esic.dao.UserDao;
+import fr.esic.model.Person;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author dylan55
  */
-@WebServlet(name = "allClientServlet", urlPatterns = {"/allClient"})
-public class allClientServlet extends HttpServlet {
+@WebServlet(name = "formActiverClientServlet", urlPatterns = {"/formActiverClient"})
+public class formActiverClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +41,10 @@ public class allClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet allClientServlet</title>");            
+            out.println("<title>Servlet formActiverClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet allClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet formActiverClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,21 +62,8 @@ public class allClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            try {
-                List<User> users = ClientDao.getAllClient();
-                request.setAttribute("users", users);
-                request.getRequestDispatcher("WEB-INF/voirClient.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println("expt :" + e.getMessage());
-            }
-        } else {
-            request.setAttribute("msg", "Connectez vous");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }    }
+        processRequest(request, response);
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -91,16 +76,37 @@ HttpSession session = request.getSession(true);
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-String idperson = request.getParameter("iduser");
-        int id = Integer.parseInt(idperson);
+String userId = request.getParameter("userId");
+        int idU = Integer.parseInt(userId);
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
 
+        String login = request.getParameter("login");
+        String password = request.getParameter("mdp");
+
+        String statut = request.getParameter("statut");
+        System.out.println("stat: " + statut);
+        int stat = Integer.parseInt(statut);
+
+        Person p = new Person(nom, prenom);
         try {
-            User u = UserDao.getUserById(id);
-            request.setAttribute("user", u);
-            request.getRequestDispatcher("WEB-INF/FormActivationClient.jsp").forward(request, response);
+            
+
+            PersonDao.UpdatePerson(p);
+
+            Person pe = PersonDao.getPersonByNom(nom);
+            //System.out.println("person: " + pe);
+
+            User c = new User(login, password, pe, stat);
+            c.setId(idU);
+            UserDao.changerStatutConseiller(c);
+
+          
+
+            request.getRequestDispatcher("AccueilServlet").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("expt :" + e.getMessage());
+            out.println("Exception :" + e.getMessage());
         }    }
 
     /**
