@@ -21,7 +21,7 @@
 
         -->
         <script
-        src="https://kit.fontawesome.com/64d58efce2.js"crossorigin="anonymous"></script>
+        src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css"/>
         <title>Sign in & Sign up Form</title>
 
@@ -434,6 +434,8 @@
             <div class="forms-container">
                 <div class="signin-signup">
                     <form action="login" method="POST" class="sign-in-form">
+                                                <h1 class="title">Banque Route</h1>
+                                                <br>
                         <h2 class="title">Sign in</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
@@ -540,7 +542,7 @@
                 </div>
                 <div class="panel right-panel">
                     <div class="content">
-                        <h3>One of us ?</h3>
+                        <h3>Banque Route</h3>
                         <p>
 
                         </p>
