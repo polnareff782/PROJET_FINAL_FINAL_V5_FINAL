@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link rel="stylesheet" href="style_1.css">
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +23,9 @@
 
     </head>
     <body>
-         <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <div>
+
+           <nav class="navbar navbar-expand-lg navbar-white bg-white">
             <div class="collapse navbar-collapse " id="navbarNav">
                 <ul class="navbar-nav nav-fill w-100">
                     <li class="nav-item active">
@@ -40,16 +42,22 @@
             </div>
         </nav>
 
-      
+                                <br>
+  
+            <h5 style ="color:#B14797; ">Listes des conseillers:</h5>
             <table class="table">
                 <thead>
-                    <tr class="table-active">
-                        <th>ID</th>
+                    <tr class="table-info">
+                        <!--<th>ID</th>-->
+                        <th>Nom</th>                    
+                        <th>Prenom</th>
+                        <th>Sexe</th>
+                        <th>Naissance</th>
+                        <th>Téléphone</th>
+                        <th>Mail</th>
+                        <th>Adresse</th> 
                         <th>LOGIN</th>
                         <th>PASSWORD</th>
-                        <th>Nom</th>                    
-                        <th>prenom</th>                    
-                        <th>adresse</th>                    
                         <th>MODIFICATIONS PROFILS</th>
                     </tr>
                 </thead>
@@ -58,14 +66,20 @@
                     <c:forEach items="${users}" var="u">
 
                         <tr style="border: 1px solid black;">
-                            <td>${u.id}</td>
-                            <td>${u.login}</td>
-                            <td>${u.mdp}</td>
+                            <!--<td>${u.person.id}</td>-->
                             <td>${u.person.nom}</td>
                             <td>${u.person.prenom}</td>
+                            <td>${u.person.sexe}</td>
+                            <td>${u.person.dateNaissance}</td>
+                            <td>${u.person.telephone}</td>
+                            <td>${u.person.email}</td>
                             <td>${u.person.address}</td>
-                    <form action="ModifProfilCons" method="POST">
+                            <td>${u.login}</td>
+                            <td>${u.mdp}</td>
+                    <form action="ModifProfilClient" method="POST">
                         <input type="hidden" value="${u.id}" name="iduser">
+                        <input type="hidden" value="${u.person.id}" name="idperson">
+
                         <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
                     </form>
                     </tr>
@@ -74,6 +88,12 @@
 
                 </tbody>
             </table>
+            
+            <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <img src="img/modifprofilconsei.jpg"alt="Votre Carte bancaire">
+    </div></div>
         </div>
     </body>
 </html>

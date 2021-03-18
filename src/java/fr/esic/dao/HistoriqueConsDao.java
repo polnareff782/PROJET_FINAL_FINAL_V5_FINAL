@@ -45,11 +45,11 @@ public class HistoriqueConsDao {
         prepare.execute();
     }
 
-    public static List<User> getAllHistorique() throws SQLException {
+    public static List<HistoriqueCons> getAllHistorique() throws SQLException {
 
-        List<User> histCons = new ArrayList<>();
+        List<HistoriqueCons> histCons = new ArrayList<>();
 
-        String sql = "SELECT * FROM historiqueconseiller";
+        String sql = "SELECT label FROM historiqueconseiller h INNER JOIN utilisateur u ON h.idUtilisateur = u.idutilisateur WHERE idrole=2";
 
         Connection connexion = AccessBd.getConnection();
 
@@ -58,10 +58,9 @@ public class HistoriqueConsDao {
         ResultSet rs = requete.executeQuery(sql);
         while (rs.next()) {
             HistoriqueCons hist = new HistoriqueCons();
-            hist.setId(rs.getInt("id"));
             hist.setNom(rs.getString("label"));
-            hist.setIdUtil(rs.getInt("idutilisateur"));
-
+            histCons.add(hist);
+            
         }
         return histCons;
     }

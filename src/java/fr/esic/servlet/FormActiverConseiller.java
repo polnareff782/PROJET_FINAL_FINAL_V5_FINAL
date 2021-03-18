@@ -105,6 +105,17 @@ public class FormActiverConseiller extends HttpServlet {
             c.setId(idU);
             UserDao.changerStatutConseiller(c);
             
+            String label = null;
+            if (stat == 1) {
+                //label = c.getPerson().getPrenom() + " " + c.getPerson().getNom() + " a activé le compte N° " + userId;
+                label = "Le compte numero" + userId + " a ete active";
+            } else {
+                //label = c.getPerson().getPrenom() + " " + c.getPerson().getNom() + " a desactivé le compte N° " + userId;
+                label = "Le compte numero" + userId + " a ete desactive";
+
+            }
+            HistoriqueConsDao.getInstance().newHistorique(new HistoriqueCons(-1, label, c.getId()));
+            
             /*
             if (c.getStatut() == 0) {//c le nouv statut
                 UserDao.DesactiverConseiller(c);

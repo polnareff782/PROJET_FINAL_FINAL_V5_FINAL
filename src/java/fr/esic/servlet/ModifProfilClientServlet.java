@@ -5,26 +5,26 @@
  */
 package fr.esic.servlet;
 
+import fr.esic.dao.ClientDao;
 import fr.esic.dao.ConseillerDao;
-import fr.esic.dao.HistoriqueConsDao;
-import fr.esic.dao.PersonDao;
-import fr.esic.model.HistoriqueCons;
-import fr.esic.model.Person;
+import fr.esic.dao.UserDao;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Nathan Ghozlan
+ * @author dylan55
  */
-@WebServlet(name = "FormModifProfilConseillerServelt", urlPatterns = {"/FormModifConseiller"})
-public class FormModifProfilConseillerServelt extends HttpServlet {
+@WebServlet(name = "ModifProfilClientServlet", urlPatterns = {"/ModifProfilClient"})
+public class ModifProfilClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +43,10 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FormModifProfilConseillerServelt</title>");
+            out.println("<title>Servlet ModifProfilClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FormModifProfilConseillerServelt at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifProfilClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,8 +64,23 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                List<User> users = ClientDao.getAllClient();
+
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("WEB-INF/modifProfilClient.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
+        } else {
+            request.setAttribute("msg", "tu n'es pas connecter");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -78,57 +93,17 @@ public class FormModifProfilConseillerServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-
-        String idperson = request.getParameter("idperson");
-        int id = Integer.parseInt(idperson);
-
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-
-        String telephone = request.getParameter("telephone");
-        String sexe = request.getParameter("sexe");
-        String dateNaiss = request.getParameter("dateNaissance");
-        String email = request.getParameter("email");
-        String adresse = request.getParameter("adresse");
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("mdp");
-
-        Person p = new Person(nom, prenom, telephone, sexe, dateNaiss, email, adresse);
-
-        p.setId(id);
+String iduser = request.getParameter("iduser");
+        int id = Integer.parseInt(iduser);
 
         try {
-            /* int lastId = UserDao.insertPerson(u);
-            u.setIdPerson(lastId);
-            u.setLogin(login);
-            u.setPassword(password);*/
-
-            PersonDao.UpdatePerson(p);
-
-            Person pe = PersonDao.getPersonByEmail(email);
-            //Person pe = PersonDao.getPersonById(id);
-            //System.out.println("person: " + pe);
-            //System.out.println("id: " + id);
-
-            User c = new User(login, password, pe);
-
-            ConseillerDao.UpdateConseiller(c);
-
-            String label = null;
-
-            label = "Le compte numero " + idperson + " a ete modifie";
-
-            c.setId(id);
-            HistoriqueConsDao.getInstance().newHistorique(new HistoriqueCons(-1, label, c.getId()));
-
-            request.getRequestDispatcher("AccueilServlet").forward(request, response);
+            User u = UserDao.getUserById(id);
+            request.setAttribute("user", u);
+            request.getRequestDispatcher("WEB-INF/formModifProfilClient.jsp").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("Exception :" + e.getMessage());
-        }
-    }
+            out.println("expt :" + e.getMessage());
+        }    }
 
     /**
      * Returns a short description of the servlet.

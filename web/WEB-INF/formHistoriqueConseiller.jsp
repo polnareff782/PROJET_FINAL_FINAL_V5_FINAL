@@ -25,10 +25,10 @@
 
             <tbody>
 
-                <c:forEach items="${histCons}" var="h">
+                <c:forEach items="${hist}" var="h">
 
                     <tr style="border: 1px solid black;">
-                        <td>${h.label}</td>
+                        <td>${h.nom}</td>
                     </tr>
 
                 </c:forEach>

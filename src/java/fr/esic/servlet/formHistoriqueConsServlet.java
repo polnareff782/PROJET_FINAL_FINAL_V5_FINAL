@@ -73,7 +73,7 @@ public class formHistoriqueConsServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             try {
-                List<User> histCons = HistoriqueConsDao.getAllHistorique();
+                List<HistoriqueCons> histCons = HistoriqueConsDao.getAllHistorique();
 
                 request.setAttribute("hist", histCons);
                 
