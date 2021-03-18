@@ -19,7 +19,7 @@
     <body>
         <%@include file="EnteteClient.jsp" %>
       
-        <form action="UpdateUser?id=${u.id}" method="Get">
+        <form action="majClient?id=${user.person.id}" method="Post">
    
            <br>
   <div class="container mt-2"> 
@@ -32,25 +32,25 @@
                    </tr>
                    <tr>
                    <td><label for="id"  class="my-label">NUMERO COMPTE</label></td>
-                   <td><input type="text" name="id"  value="${u.id}" class="form-control" style="width: 250px"></td>
+                   <td><input type="text" name="id"  value="${user.person.id}" class="form-control" style="width: 250px"></td>
                    </tr>
                    <tr>
                    <td><label for="nom"  class="my-label">NOM</label></td>
-                   <td><input type="text" name="nom"  value="${u.nom}" class="form-control" style="width: 250px"></td>
+                   <td><input type="text" name="nom"  value="${user.person.nom}" class="form-control" style="width: 250px"></td>
                    </tr>
                 <tr>
           <td><label for="login" class="my-label">PRENOM</label></td>
-          <td> <input type="text" name="prenom"  value="${u.prenom}" class="form-control" style="width: 250px"></td>
+          <td> <input type="text" name="prenom"  value="${user.person.prenom}" class="form-control" style="width: 250px"></td>
                </tr>
 
    <tr>
    <td><label for="login" class="my-label">LOGIN :</label></td>
-   <td><input type="text" name="login"  value="${u.login}" class="form-control" style="width: 250px"></td>
+   <td><input type="text" name="login"  value="${user.login}" class="form-control" style="width: 250px"></td>
    </tr>
 
 <tr>
    <td><label for="login" class="my-label">PASSWORD</label></td>
-   <td><input type="text" id="mdp" name="mdp"  value="${u.mdp}" class="form-control" style="width: 250px"></td>
+   <td><input type="text" id="mdp" name="mdp"  value="${user.mdp}" class="form-control" style="width: 250px"></td>
    </tr>
 </table>
 <button type="submit"  class="btn btn-primary" >VALIDER</button>

@@ -30,6 +30,7 @@ public class UserDao {
             Person p = new Person();
             p.setId(rs.getInt("idperson"));
             p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
             u.setPerson(p);
 
             Role r = new Role();
@@ -39,7 +40,17 @@ public class UserDao {
 
         return u;
     }
+ public static void UpdateClient(String login,String mdp,int id) throws SQLException {
+        String sql = "UPDATE utilisateur SET login = ?, mdp = ? WHERE idperson = ?";
+        Connection connexion = AccessBd.getConnection();
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setString(1, login);
+        prepare.setString(2, mdp);
+        prepare.setInt(3, id);
 
+        prepare.execute();
+
+    }
     public static User getUserById(int id) throws SQLException {
 
         User u = null;
@@ -77,6 +88,30 @@ public class UserDao {
         return u;
     }
 
+    public static User AfficheUser (int id) throws SQLException {    
+              User u = null;
+          String  sql = "SELECT * FROM utilisateur u INNER JOIN person p ON p.idperson = u.idperson where u.idutilisateur=?";       
+         Connection connexion = AccessBd.getConnection();
+         PreparedStatement prepare = connexion.prepareStatement(sql);
+         prepare.setInt(1,id);
+   
+        ResultSet rs = prepare.executeQuery();
+        
+        if(rs.next()){
+            u = new User();
+            u.setId(rs.getInt("idperson"));
+            
+           Person p = new Person();
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            //p.setDateNaissance(rs.getDate("dateNaissance"));
+            u.setLogin(rs.getString("login"));
+            u.setMdp(rs.getString("mdp"));
+            
+        }
+        
+        return u;
+    }
     /* public static int insertPerson(User u) throws SQLException {
         String sql = "INSERT INTO person (nom, prenom, telephone, sexe, dateNaissance, eMail, adresse) VALUES (?,?,?,?,?,?,?)";
         Connection connexion = AccessBd.getConnection();
@@ -162,7 +197,7 @@ public class UserDao {
         prepare.execute();
     }
 
-    public static User AfficheUser(int id) throws SQLException {
+    /*public static User AfficheUser(int id) throws SQLException {
         User u = null;
         Person p = null;
         String sql = "select * from person where idperson=?";
@@ -188,7 +223,9 @@ public class UserDao {
         }
 
         return u;
-    }
+    }*/
+    
+    
         public static void UpdateUser (String nom, String prenom, String mdp, String log) throws SQLException{
            String sql ="Update person set nom=?, prenom=?, mdp=? WHERE login=?";
            Connection connexion = AccessBd.getConnection();

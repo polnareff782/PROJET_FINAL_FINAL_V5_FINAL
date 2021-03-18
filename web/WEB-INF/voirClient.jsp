@@ -35,10 +35,10 @@
                             <a class="nav-link " style ="color:blue; " href="allClient">Voir compte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:green;"href="#">Activer/Désactiver compte client</a>
+                            <a class="nav-link " style ="color:green;" href="#">Activer/Désactiver compte client</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link "style ="color:purple;" href="#">Activer/Désactiver carte client</a>
+                            <a class="nav-link " style ="color:purple;" href="#">Activer/Désactiver carte client</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style ="color:red;" href="#">Historique des comptes clients</a>
