@@ -25,27 +25,12 @@
     <body>
         <div>
 
-           <nav class="navbar navbar-expand-lg navbar-white bg-white">
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav nav-fill w-100">
-                    <li class="nav-item active">
-                        <a class="nav-link active font-weight-bold px-3 fas fa-home fa-2x material-icons "style ="color:blue; "href="AccueilServlet" ></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:blue; " href="DeconnexionServlet">  <span> <h6>
-                                    ${user.person.nom}
-                                </h6>
-                            </span>
-                        </a> 
-                    </li>
-                </ul>
-            </div>
-        </nav>
+           <%@include file="menuConseiller.jsp" %>
 
                                 <br>
                                 <div class="container">
                               
-            <h5 class="text-center" style ="color:#B14797; ">Listes des conseillers:</h5>
+            <h5 class="text-center" style ="color:#B14797; ">Listes des clients</h5>
                   <br><br>
             <table class="table">
                 <thead>

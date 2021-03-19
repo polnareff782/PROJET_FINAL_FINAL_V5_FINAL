@@ -17,7 +17,7 @@
   <%@include file="menuConseiller.jsp" %>
         
         <div class="container">
-            <h1 class="text-center">Bonjour ${user.person.nom} !</h1>
+            <h1 class="text-center">Bonjour ${user.person.nom} ! <br><span style="font-size: 15px;color: red">ici vous etes invités a activer ou desactiver une personne</span></h1>
     <br><br>
              <h5 style ="color:#B14797; ">Listes des clients:</h5>
              <br><br>
