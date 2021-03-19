@@ -15,9 +15,20 @@
         <%@include file="menuConseiller.jsp" %>
         
         <div class="container">
+                  <br><br><br><br><br><br>      <br><br><br><br>
+            <div class="row">
+            <div class="col-md-4">
+      
+        </div>
+          
+            <div class="col-md-4">
+           <img src ="img/inscriptionclient.jpg">
+            </div>
+            <div class="col-md-4">
          
-
-           
+            </div>
+                
+            </div>
         </div>
     </body>
 </html>

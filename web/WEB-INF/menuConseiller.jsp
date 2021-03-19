@@ -31,26 +31,27 @@
                 <ul class="nav navbar-nav w-100 justify-content-between">
 
                     <ul class="nav nav-tabs">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:blue; " href="allClient">Voir compte client</a>
+                            <a class="nav-link " style ="color:blue; " href="allClient">Voir compte client </a>
                         </li>
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:green;"href="#">Activer/Désactiver carte client</a>
+                            <a class="nav-link " style ="color:green;"href="ModifProfilClient">Modifier profil client</a>
                         </li>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                       
                         <li class="nav-item">
-                            <a class="nav-link " style ="color:green;"href="ModifProfilClient">modifier profil client</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style ="color:red;" href="#">Historique des comptes clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " style ="color:brown;" href="#">Autoriser un découvert</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " style ="color:brown;" href="contactConseiller">Contacter client</a>
+                            <a class="nav-link " style ="color:brown;" href="ContactConseiller">Contacter client</a>
                         </li>
 
-
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              
                         <li class="nav-item">
                             <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:blue; " href="DeconnexionServlet">  <span> <h6>
 
@@ -59,7 +60,9 @@
                                 </span>
                             </a> 
                         </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+              
 
                     </ul>
 

@@ -17,13 +17,14 @@
   <%@include file="menuConseiller.jsp" %>
         
         <div class="container">
-            <h1>Bonjour ${user.person.nom} !</h1>
-
-            <h5>Listes des clients</h5>
+            <h1 class="text-center">Bonjour ${user.person.nom} !</h1>
+    <br><br>
+             <h5 style ="color:#B14797; ">Listes des clients:</h5>
+             <br><br>
             <form action="allClient" method="POST">
             <table class="table table-hover">
                 <thead>
-                    <tr class="table-active">
+                    <tr class="table-info">
                         <th>ID</th>
                         <th>LOGIN</th>
                         <th>PASSWORD</th>
