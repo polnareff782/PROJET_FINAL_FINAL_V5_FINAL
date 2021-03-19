@@ -97,6 +97,7 @@
                     <img src="img/modifprofilconsei.jpg"alt="Votre Carte bancaire">
                 </div></div>
         </div>
+                                      <%@ include file="Footer.jsp"%>
 
     </body>
 </html>

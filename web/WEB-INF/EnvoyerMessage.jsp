@@ -1,8 +1,3 @@
-<%-- 
-    Document   : contact
-    Created on : 3 mars 2021, 23:02:05
-    Author     : Huawei
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -52,5 +47,7 @@
             </form>
 
         </div>
+                           <%@ include file="Footer.jsp"%>
+
     </body>
 </html>

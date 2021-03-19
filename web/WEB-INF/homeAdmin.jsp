@@ -14,6 +14,7 @@
     </head>
     <body>
          <%@include file="menuAdmin.jsp" %>
-   
+                                               <%@ include file="Footer.jsp"%>
+
     </body>
 </html>

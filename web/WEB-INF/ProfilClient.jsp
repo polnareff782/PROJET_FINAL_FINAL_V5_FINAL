@@ -110,12 +110,12 @@
                                     <div class="row "> 
                                         <div class="col-md-6">
                                             <label for="nom" class="my-label">Nom</label>
-                                            <input type="text" class="form-control" value="${user.person.nom}" name="nom">
+                                            <input type="text" class="form-control" value="${user.person.nom}" name="nom" disabled>
 
                                         </div>
                                         <div class="col-md-6">
                                             <label for="prenom" class="my-label">Prenom</label>
-                                            <input type="text" class="form-control mb-2" value="${user.person.prenom}" name="prenom">
+                                            <input type="text" class="form-control mb-2" value="${user.person.prenom}" name="prenom" disabled>
                                         </div>
                                     </div>
 
@@ -135,12 +135,12 @@
                                              <div class="row "> 
                                         <div class="col-md-6">
                                              <label for="telephone" class="my-label">Téléphone</label>
-                                        <input type="text" class="form-control" value="${user.person.telephone}" name="telephone">
+                                        <input type="text" class="form-control" value="${user.person.telephone}" name="telephone" disabled>
 
                                         </div>
                                         <div class="col-md-6">
                                                <label for="sexe" class="my-label">Sexe</label>
-                                        <input type="text" class="form-control" value="${user.person.sexe}" name="sexe">
+                                        <input type="text" class="form-control" value="${user.person.sexe}" name="sexe" disabled>
                                         </div>
                                     </div>
                                         
@@ -148,12 +148,12 @@
                                              <div class="row "> 
                                         <div class="col-md-6">
                                          <label for="dateNaissance" class="my-label">Date de naissance</label>
-                                        <input type="date" class="form-control" value="${user.person.dateNaissance}" name="dateNaissance">
+                                        <input type="date" class="form-control" value="${user.person.dateNaissance}" name="dateNaissance" disabled>
 
                                         </div>
                                         <div class="col-md-6">
                                                <label for="email" class="my-label">Email</label>
-                                        <input type="mail" class="form-control" value="${user.person.email}" name="email">
+                                        <input type="mail" class="form-control" value="${user.person.email}" name="email" disabled>
                                         </div>
                                     </div>
                                         
@@ -162,7 +162,7 @@
                                 
                                     <div class="mb-3">
                                         <label for="adresse" class="my-label">Adresse</label>
-                                        <input type="text" class="form-control" value="${user.person.address}" name="adresse">
+                                        <input type="text" class="form-control" value="${user.person.address}" name="adresse" disabled>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary btn-block">Modifier profil</button>
@@ -178,5 +178,7 @@
                 </div>
             </form>      
         </div> 
+                                                  <%@ include file="Footer.jsp"%>
+
     </body>
 </html>

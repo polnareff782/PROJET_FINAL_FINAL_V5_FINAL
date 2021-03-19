@@ -88,5 +88,7 @@
             <div class="col-md-4">
                 <img src="img/activeconseiller.jpg"alt="Votre Carte bancaire">
             </div></div>
+                          <%@ include file="Footer.jsp"%>
+
     </body>
 </html>

@@ -152,7 +152,8 @@ public class Achat extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         
-     
+                  request.getRequestDispatcher("WEB-INF/Achat.jsp").forward(request, response); 
+
         
     }
 
