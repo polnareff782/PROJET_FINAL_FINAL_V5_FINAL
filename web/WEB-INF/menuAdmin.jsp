@@ -27,28 +27,35 @@
         <br>
         <div class="container mt-2">
             <ul class="nav navbar-nav w-100 justify-content-between">
-
                 <ul class="nav nav-tabs">
+                                        &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;
+
                     <li class="nav-item">
                         <a class="nav-link " style ="color:blue; " href="InscriptionConseillerServlet">Créer un compte conseiller</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " style ="color:green;"href="ActiverConseiller">Activer/Désactiver compte conseiller</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link "style ="color:purple;" href="ModifProfilCons">Modifier profil conseiller</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style ="color:red;" href="formHistoriqueCons">Historique</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " style ="color:brown;" href="inscriptionAdmin">Ajouter un compte admin</a>
-                    </li>
-
-
+                    </li>      &nbsp;      &nbsp;      &nbsp;         &nbsp;      &nbsp;      &nbsp;
 
                     <li class="nav-item">
-                        <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:blue; " href="DeconnexionServlet">  <span> <h6>
+                        <a class="nav-link " style ="color:blue;"href="ActiverConseiller">Activer/Désactiver compte conseiller</a>
+                    </li>
+                                                          &nbsp;           &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;
+
+                    <li class="nav-item">
+                        <a class="nav-link "style ="color:blue;" href="ModifProfilCons">Modifier profil conseiller</a>
+                    </li>
+                                                              &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;      &nbsp;
+
+                    <li class="nav-item">
+                        <a class="nav-link" style ="color:blue;" href="formHistoriqueCons">Historique</a>
+                    </li>
+                     &nbsp;      &nbsp;      &nbsp;   &nbsp;      &nbsp;  
+                    <li class="nav-item">
+                        <a class="nav-link " style ="color:blue;" href="inscriptionAdmin">Ajouter un compte admin</a>
+                    </li>
+
+ &nbsp;      &nbsp;      &nbsp;  
+
+                    <li class="nav-item">
+                        <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:red; " href="DeconnexionServlet">  <span> <h6>
 
                                     ${user.person.nom}
                                 </h6>

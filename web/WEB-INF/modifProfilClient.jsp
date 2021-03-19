@@ -43,8 +43,10 @@
         </nav>
 
                                 <br>
-  
-            <h5 style ="color:#B14797; ">Listes des conseillers:</h5>
+                                <div class="container">
+                              
+            <h5 class="text-center" style ="color:#B14797; ">Listes des conseillers:</h5>
+                  <br><br>
             <table class="table">
                 <thead>
                     <tr class="table-info">
@@ -88,7 +90,7 @@
 
                 </tbody>
             </table>
-            
+            </div>
             <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">

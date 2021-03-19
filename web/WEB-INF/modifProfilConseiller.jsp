@@ -25,76 +25,79 @@
     <body>
         <div>
 
-           <nav class="navbar navbar-expand-lg navbar-white bg-white">
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav nav-fill w-100">
-                    <li class="nav-item active">
-                        <a class="nav-link active font-weight-bold px-3 fas fa-home fa-2x material-icons "style ="color:blue; "href="AccueilServlet" ></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:blue; " href="DeconnexionServlet">  <span> <h6>
-                                    ${user.person.nom}
-                                </h6>
-                            </span>
-                        </a> 
-                    </li>
-                </ul>
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav nav-fill w-100">
+                        <li class="nav-item active">
+                            <a class="nav-link active font-weight-bold px-3 fas fa-home fa-2x material-icons "style ="color:blue; "href="AccueilServlet" ></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  font-weight-bold px-3 fas fa-power-off fa-2x material-icons" style ="color:blue; " href="DeconnexionServlet">  <span> <h6>
+                                        ${user.person.nom}
+                                    </h6>
+                                </span>
+                            </a> 
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <br>
+            <div class="container">
+                <h5  class="text-center" style ="color:#B14797; ">Listes des conseillers:</h5>
+                <br><br>
+                <table class="table">
+                    <thead>
+                        <tr class="table-info">
+                            <!--<th>ID</th>-->
+                            <th>Nom</th>                    
+                            <th>Prenom</th>
+                            <th>Sexe</th>
+                            <th>Naissance</th>
+                            <th>Téléphone</th>
+                            <th>Mail</th>
+                            <th>Adresse</th> 
+                            <th>LOGIN</th>
+                            <th>PASSWORD</th>
+                            <th>MODIFICATIONS PROFILS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <c:forEach items="${users}" var="u">
+
+                            <tr style="border: 1px solid black;">
+                                <!--<td>${u.person.id}</td>-->
+                                <td>${u.person.nom}</td>
+                                <td>${u.person.prenom}</td>
+                                <td>${u.person.sexe}</td>
+                                <td>${u.person.dateNaissance}</td>
+                                <td>${u.person.telephone}</td>
+                                <td>${u.person.email}</td>
+                                <td>${u.person.address}</td>
+                                <td>${u.login}</td>
+                                <td>${u.mdp}</td>
+                        <form action="ModifProfilCons" method="POST">
+                            <input type="hidden" value="${u.id}" name="iduser">
+                            <input type="hidden" value="${u.person.id}" name="idperson">
+
+                            <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
+                        </form>
+                        </tr>
+
+                    </c:forEach>
+
+                    </tbody>
+                </table>
             </div>
-        </nav>
 
-                                <br>
-  
-            <h5 style ="color:#B14797; ">Listes des conseillers:</h5>
-            <table class="table">
-                <thead>
-                    <tr class="table-info">
-                        <!--<th>ID</th>-->
-                        <th>Nom</th>                    
-                        <th>Prenom</th>
-                        <th>Sexe</th>
-                        <th>Naissance</th>
-                        <th>Téléphone</th>
-                        <th>Mail</th>
-                        <th>Adresse</th> 
-                        <th>LOGIN</th>
-                        <th>PASSWORD</th>
-                        <th>MODIFICATIONS PROFILS</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <c:forEach items="${users}" var="u">
-
-                        <tr style="border: 1px solid black;">
-                            <!--<td>${u.person.id}</td>-->
-                            <td>${u.person.nom}</td>
-                            <td>${u.person.prenom}</td>
-                            <td>${u.person.sexe}</td>
-                            <td>${u.person.dateNaissance}</td>
-                            <td>${u.person.telephone}</td>
-                            <td>${u.person.email}</td>
-                            <td>${u.person.address}</td>
-                            <td>${u.login}</td>
-                            <td>${u.mdp}</td>
-                    <form action="ModifProfilCons" method="POST">
-                        <input type="hidden" value="${u.id}" name="iduser">
-                        <input type="hidden" value="${u.person.id}" name="idperson">
-
-                        <td><button  type="submit" class="btn btn-outline-success" >Modifier Infos Profil</button> </td>
-                    </form>
-                    </tr>
-
-                </c:forEach>
-
-                </tbody>
-            </table>
-            
             <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <img src="img/modifprofilconsei.jpg"alt="Votre Carte bancaire">
-    </div></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <img src="img/modifprofilconsei.jpg"alt="Votre Carte bancaire">
+                </div></div>
         </div>
+
     </body>
 </html>
 

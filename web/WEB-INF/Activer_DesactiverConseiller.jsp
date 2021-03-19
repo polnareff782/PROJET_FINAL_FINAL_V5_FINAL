@@ -41,49 +41,52 @@
             </div>
         </nav>
         <br>
-        <h4 style ="color:#9376BD; ">Listes des conseillers:</h4>
-        <table class="table">
-            <thead>
-                <tr  class="table-primary">
-                    <th>ID</th>
-                    <th>LOGIN</th>
-                    <th>PASSWORD</th>
-                    <th>Nom</th>                    
-                    <th>Prenom</th>
-                    <th>Sexe</th>
-                    <th>Etat</th>                   
-                    <th>Activation Conseillers</th>
-                </tr>
-            </thead>
+        <div class="container">
+            <h4 class="text-center" style ="color:#9376BD; ">Listes des conseillers:</h4> 
+            <br><br>
+            <table class="table">
+                <thead>
+                    <tr  class="table-primary">
+                        <th>ID</th>
+                        <th>LOGIN</th>
+                        <th>PASSWORD</th>
+                        <th>Nom</th>                    
+                        <th>Prenom</th>
+                        <th>Sexe</th>
+                        <th>Etat</th>                   
+                        <th>Activation Conseillers</th>
+                    </tr>
+                </thead>
 
 
-            <tbody>
+                <tbody>
 
-                <c:forEach items="${users}" var="u">
+                    <c:forEach items="${users}" var="u">
 
-                    <tr style="border: 1px solid black;">
-                        <td>${u.id}</td>
-                        <td>${u.login}</td>
-                        <td>${u.mdp}</td>
-                        <td>${u.person.nom}</td>
-                        <td>${u.person.prenom}</td>
-                        <td>${u.person.sexe}</td>
-                        <td>${u.statut}</td>
-                <form action="ActiverConseiller" method="POST">
-                    <input type="hidden" value="${u.id}" name="iduser">
-                    <td><button  type="submit" class="btn btn-outline-success" onclick="" >Activer/Desactiver compte</button> </td>
+                        <tr style="border: 1px solid black;">
+                            <td>${u.id}</td>
+                            <td>${u.login}</td>
+                            <td>${u.mdp}</td>
+                            <td>${u.person.nom}</td>
+                            <td>${u.person.prenom}</td>
+                            <td>${u.person.sexe}</td>
+                            <td>${u.statut}</td>
+                    <form action="ActiverConseiller" method="POST">
+                        <input type="hidden" value="${u.id}" name="iduser">
+                        <td><button  type="submit" class="btn btn-outline-success" onclick="" >Activer/Desactiver compte</button> </td>
 
-                </form>
-            </tr>
+                    </form>
+                    </tr>
 
-        </c:forEach>
+                </c:forEach>
 
-    </tbody>
-</table>
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <img src="img/activeconseiller.jpg"alt="Votre Carte bancaire">
-    </div></div>
-</body>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <img src="img/activeconseiller.jpg"alt="Votre Carte bancaire">
+            </div></div>
+    </body>
 </html>
